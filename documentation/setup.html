@@ -41,7 +41,7 @@
               </ul>
             </li>
             <li><a href="https://groups.google.com/group/scalikejdbc-users-group">Users Group</a></li>
-            <li><a href="https://github.com/seratch/scalikejdbc">Source</a></li>
+            <li><a href="https://github.com/scalikejdbc/scalikejdbc">Source</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -49,6 +49,7 @@
         <div class="col-xs-2">
           <div class="content small">
             <h5>Documentation</h5>
+            <hr/>
             <p><a href="/documentation/setup.html">Setup</a></p>
             <p><a href="/documentation/configuration.html">Configuration</a></p>
             <p><a href="/documentation/connection-pool.html">Connection Pool</a></p>
@@ -64,15 +65,11 @@
             <p><a href="/documentation/playframework-support.html">Play2 Support</a></p>
             <p><a href="/contribution.html">Contribution</a></p>
             <p><a href="/documentation/dbconsole.html">dbconsole</a></p>
-            <hr/>
-            <h5>Links</h5>
-            <p><a href="http://www.amazon.co.jp/dp/B00AW0AC06">Cookbook(Japanese)</a></p>
-            <p><a href="https://github.com/seratch/skinny-framework#orm">Skinny ORM</a></p>
           </div>
         </div>
         <div class="col-xs-10">
           <div class="content">
-<a href="https://github.com/seratch/scalikejdbc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+<a href="https://github.com/scalikejdbc/scalikejdbc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
             <h2>Setup</h2>
 
 <hr/>
@@ -89,10 +86,10 @@
 
 <p>If you&rsquo;re still using Scala 2.9, you can&rsquo;t use <code>scalikejdbc-interpolation</code>.</p>
 <pre class="highlight text">libraryDependencies ++= Seq(
-  &quot;com.github.seratch&quot; %% &quot;scalikejdbc&quot;               % &quot;[1.6,)&quot;,
-  &quot;com.github.seratch&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;[1.6,)&quot;,
-  &quot;com.h2database&quot;     %  &quot;h2&quot;                        % &quot;[1.3,)&quot;,
-  &quot;ch.qos.logback&quot;     %  &quot;logback-classic&quot;           % &quot;[1.0,)&quot;
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc&quot;               % &quot;[1.7,)&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;[1.7,)&quot;,
+  &quot;com.h2database&quot;  %  &quot;h2&quot;                        % &quot;[1.3,)&quot;,
+  &quot;ch.qos.logback&quot;  %  &quot;logback-classic&quot;           % &quot;[1.0,)&quot;
 )
 </pre>
 <p>In your application, just add the following import.</p>
@@ -104,11 +101,11 @@
 
 <p>Using <code>scalikejdbc-test</code> is highly recommended to improve your application.</p>
 <pre class="highlight text">libraryDependencies ++= Seq(
-  &quot;com.github.seratch&quot; %% &quot;scalikejdbc&quot;               % &quot;[1.6,)&quot;,
-  &quot;com.github.seratch&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;[1.6,)&quot;,
-  &quot;com.github.seratch&quot; %% &quot;scalikejdbc-test&quot;          % &quot;[1.6,)&quot;   % &quot;test&quot;,
-  &quot;com.h2database&quot;     %  &quot;h2&quot;                        % &quot;[1.3,)&quot;,
-  &quot;ch.qos.logback&quot;     %  &quot;logback-classic&quot;           % &quot;[1.0,)&quot;
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc&quot;               % &quot;[1.7,)&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;[1.7,)&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-test&quot;          % &quot;[1.7,)&quot;   % &quot;test&quot;,
+  &quot;com.h2database&quot;  %  &quot;h2&quot;                        % &quot;[1.3,)&quot;,
+  &quot;ch.qos.logback&quot;  %  &quot;logback-classic&quot;           % &quot;[1.0,)&quot;
 )
 </pre>
 <p>Usage: <a href="/documentation/testing.html">/documentation/testing</a></p>
@@ -119,11 +116,11 @@
 
 <p>If you use <code>application.conf</code> as settings file, add <code>scalikejdbc-config</code> too.</p>
 <pre class="highlight text">libraryDependencies ++= Seq(
-  &quot;com.github.seratch&quot; %% &quot;scalikejdbc&quot;               % &quot;[1.6,)&quot;,
-  &quot;com.github.seratch&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;[1.6,)&quot;,
-  &quot;com.github.seratch&quot; %% &quot;scalikejdbc-config&quot;        % &quot;[1.6,)&quot;,
-  &quot;com.h2database&quot;     %  &quot;h2&quot;                        % &quot;[1.3,)&quot;,
-  &quot;ch.qos.logback&quot;     %  &quot;logback-classic&quot;           % &quot;[1.0,)&quot;
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc&quot;               % &quot;[1.7,)&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;[1.7,)&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-config&quot;        % &quot;[1.7,)&quot;,
+  &quot;com.h2database&quot;  %  &quot;h2&quot;                        % &quot;[1.3,)&quot;,
+  &quot;ch.qos.logback&quot;  %  &quot;logback-classic&quot;           % &quot;[1.0,)&quot;
 )
 </pre>
 <p>Usage: <a href="/documentation/configuration.html">/documentation/configuration</a></p>
@@ -139,7 +136,7 @@ You need to setup an sbt plugin named <code>scalikejdbc-mapper-generator</code>.
 <pre class="highlight text">// Don't forget adding your JDBC driver
 libraryDependencies += &quot;org.hsqldb&quot; % &quot;hsqldb&quot; % &quot;[2,)&quot;
 
-addSbtPlugin(&quot;com.github.seratch&quot; %% &quot;scalikejdbc-mapper-generator&quot; % &quot;[1.6,)&quot;)
+addSbtPlugin(&quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-mapper-generator&quot; % &quot;[1.7,)&quot;)
 </pre>
 <h5>build.sbt</h5>
 <pre class="highlight text">scalikejdbcSettings
@@ -169,11 +166,11 @@ generator.encoding=UTF-8
 
 <h5>project/Build.scala</h5>
 <pre class="highlight text">val appDependencies = Seq(
-  &quot;com.github.seratch&quot; %% &quot;scalikejdbc&quot;             % &quot;[1.6,)&quot;,
-  &quot;com.github.seratch&quot; %% &quot;scalikejdbc-play-plugin&quot; % &quot;[1.6,)&quot;,
-  &quot;com.github.seratch&quot; %% &quot;scalikejdbc-play-fixture-plugin&quot; % &quot;[1.6,)&quot;, // optional
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc&quot;                     % &quot;[1.7,)&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-play-plugin&quot;         % &quot;[1.7,)&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-play-fixture-plugin&quot; % &quot;[1.7,)&quot;, // optional
   // substitute this for whatever DB driver you're using:
-  &quot;com.h2database&quot;     %  &quot;h2&quot;                      % &quot;1.3,)&quot;
+  &quot;com.h2database&quot;  %  &quot;h2&quot;                      % &quot;1.3,)&quot;
 )
 </pre>
 <h5>conf/play.plugins</h5>

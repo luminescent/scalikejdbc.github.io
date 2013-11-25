@@ -41,7 +41,7 @@
               </ul>
             </li>
             <li><a href="https://groups.google.com/group/scalikejdbc-users-group">Users Group</a></li>
-            <li><a href="https://github.com/seratch/scalikejdbc">Source</a></li>
+            <li><a href="https://github.com/scalikejdbc/scalikejdbc">Source</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -49,6 +49,7 @@
         <div class="col-xs-2">
           <div class="content small">
             <h5>Documentation</h5>
+            <hr/>
             <p><a href="/documentation/setup.html">Setup</a></p>
             <p><a href="/documentation/configuration.html">Configuration</a></p>
             <p><a href="/documentation/connection-pool.html">Connection Pool</a></p>
@@ -64,15 +65,11 @@
             <p><a href="/documentation/playframework-support.html">Play2 Support</a></p>
             <p><a href="/contribution.html">Contribution</a></p>
             <p><a href="/documentation/dbconsole.html">dbconsole</a></p>
-            <hr/>
-            <h5>Links</h5>
-            <p><a href="http://www.amazon.co.jp/dp/B00AW0AC06">Cookbook(Japanese)</a></p>
-            <p><a href="https://github.com/seratch/skinny-framework#orm">Skinny ORM</a></p>
           </div>
         </div>
         <div class="col-xs-10">
           <div class="content">
-<a href="https://github.com/seratch/scalikejdbc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+<a href="https://github.com/scalikejdbc/scalikejdbc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
             <h1>ScalikeJDBC</h1>
 
 <hr/>
@@ -89,10 +86,10 @@ ScalikeJDBC is a practical and production-ready one. Use this library for your r
 
 <p>All you need to do is just adding ScalikeJDBC, JDBC driver &amp; slf4j implementation. </p>
 <pre class="highlight text">libraryDependencies ++= Seq(
-  &quot;com.github.seratch&quot; %% &quot;scalikejdbc&quot;               % &quot;[1.6,)&quot;,
-  &quot;com.github.seratch&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;[1.6,)&quot;,
-  &quot;com.h2database&quot;     %  &quot;h2&quot;                        % &quot;[1.3,)&quot;,
-  &quot;ch.qos.logback&quot;     %  &quot;logback-classic&quot;           % &quot;[1.0,)&quot;
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc&quot;               % &quot;[1.7,)&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;[1.7,)&quot;,
+  &quot;com.h2database&quot;  %  &quot;h2&quot;                        % &quot;[1.3,)&quot;,
+  &quot;ch.qos.logback&quot;  %  &quot;logback-classic&quot;           % &quot;[1.0,)&quot;
 )
 </pre>
 <h4>First example</h4>
@@ -146,7 +143,7 @@ create table members (
 
 <p>Activator page: <a href="http://typesafe.com/activator/template/scalikejdbc-activator-template">Hello ScalikeJDBC!</a></p>
 
-<p>See on GitHub: <a href="https://github.com/seratch/hello-scalikejdbc">seratch/hello-scalikejdbc</a></p>
+<p>See on GitHub: <a href="https://github.com/scalikejdbc/hello-scalikejdbc">scalikejdbc/hello-scalikejdbc</a></p>
 
 <hr/>
 
@@ -173,10 +170,10 @@ create table members (
 <p>We never release without passing all the unit tests with the following RDBMS.</p>
 
 <ul>
-<li>&ldquo;com.h2database&rdquo; % &ldquo;h2&rdquo;</li>
-<li>&ldquo;org.hsqldb&rdquo; % &ldquo;hsqldb&rdquo;</li>
-<li>&ldquo;mysql&rdquo; % &ldquo;mysql-connector-java&rdquo;</li>
-<li>&ldquo;org.postgresql&rdquo; % &ldquo;postgresql&rdquo;</li>
+<li>PostgreSQL</li>
+<li>MySQL</li>
+<li>H2 Database Engine</li>
+<li>HSQLDB</li>
 </ul>
 
 <p>We believe that ScalikeJDBC basically works with any other RDBMS (Oracle, SQL Server and so on).</p>
@@ -243,7 +240,7 @@ create table members (
 </pre>
 <p>See in detail: <a href="/documentation/query-dsl.html">/documentation/query-dsl</a></p>
 
-<p>Test code: <a href="https://github.com/seratch/scalikejdbc/blob/master/scalikejdbc-interpolation/src/test/scala/scalikejdbc/QueryInterfaceSpec.scala">src/test/scala/scalikejdbc/QueryInterfaceSpec.scala</a></p>
+<p>Test code: <a href="https://github.com/scalikejdbc/scalikejdbc/blob/master/scalikejdbc-interpolation/src/test/scala/scalikejdbc/QueryInterfaceSpec.scala">src/test/scala/scalikejdbc/QueryInterfaceSpec.scala</a></p>
 
 <hr/>
 
@@ -350,6 +347,18 @@ http://www.apache.org/licenses/LICENSE-2.0.html
 
 <hr/>
 
+<h3>ScalikeJDBC-Async</h3>
+
+<p>ScalikeJDBC Extension: Non-blocking APIs in the JDBC way.</p>
+
+<p><a href="https://github.com/scalikejdbc/scalikejdbc-async">github.com/scalikejdbc/scalikejdbc-async</a></p>
+
+<p>ScalikeJDBC-Async provides non-blocking APIs to talk with PostgreSQL and MySQL in the JDBC way.</p>
+
+<p>This library is built with <a href="https://github.com/mauricio/postgresql-async">postgrsql-async and mysql-async</a>,incredible works by @mauricio.</p>
+
+<hr/>
+
 <h3>dbconsole</h3>
 
 <p>dbconsole is an extended sbt console to connect database. </p>
@@ -368,11 +377,11 @@ http://www.apache.org/licenses/LICENSE-2.0.html
 
 <p><img alt="Skinny framework" src="/images/skinny.png" /></p>
 
-<p>Skinny ORM is the default DB access library of <a href="https://github.com/seratch/skinny-framework">Skinny Framework</a>. Skinny ORM is built upon ScalikeJDBC. </p>
+<p>Skinny ORM is the default DB access library of <a href="https://github.com/skinny-framework/skinny-framework">Skinny Framework</a>. Skinny ORM is built upon ScalikeJDBC. </p>
 
 <p>In most cases, ORM makes things easier.</p>
 
-<p><a href="https://github.com/seratch/skinny-framework#orm">https://github.com/seratch/skinny-framework#orm</a></p>
+<p><a href="https://github.com/skinny-framework/skinny-framework#orm">https://github.com/skinny-framework/skinny-framework#orm</a></p>
 
             <hr/>
             <div class="alert alert-info small"> 
