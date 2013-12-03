@@ -123,6 +123,10 @@
   <span class="c1">// If the table name is same as snake_case'd name of this companion object,</span>
   <span class="c1">// you don't need to specify tableName explicitly.</span>
   <span class="n">override</span> <span class="n">val</span> <span class="n">tableName</span> <span class="o">=</span> <span class="s">&quot;groups&quot;</span>
+
+  <span class="c1">// If you use NamedDB for this entity, override connectionPoolName</span>
+  <span class="c1">//override val connectionPoolName = 'anotherdb</span>
+
   <span class="n">def</span> <span class="n">apply</span><span class="o">(</span><span class="nl">g:</span> <span class="n">ResultName</span><span class="o">[</span><span class="n">Group</span><span class="o">])(</span><span class="nl">rs:</span> <span class="n">WrappedResultSet</span><span class="o">)</span> <span class="o">=</span>
     <span class="k">new</span> <span class="n">Group</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">long</span><span class="o">(</span><span class="n">g</span><span class="o">.</span><span class="na">id</span><span class="o">),</span> <span class="n">rs</span><span class="o">.</span><span class="na">string</span><span class="o">(</span><span class="n">g</span><span class="o">.</span><span class="na">name</span><span class="o">))</span>
 <span class="o">}</span>
@@ -168,7 +172,7 @@
 
 <p>If you need to define column names by yourself or need to access multi databases, please define column names as follows:</p>
 <pre class="highlight java"><span class="n">object</span> <span class="n">GroupMember</span> <span class="kd">extends</span> <span class="n">SQLSyntaxSupport</span><span class="o">[</span><span class="n">GroupMember</span><span class="o">]</span> <span class="o">{</span>
-  <span class="n">override</span> <span class="n">val</span> <span class="n">tableName</span> <span class="o">=</span> <span class="s">&quot;group_member&quot;</span>
+  <span class="n">override</span> <span class="n">val</span> <span class="n">tableName</span> <span class="o">=</span> <span class="s">&quot;groups_members&quot;</span>
   <span class="n">override</span> <span class="n">val</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">Seq</span><span class="o">(</span><span class="s">&quot;id&quot;</span><span class="o">,</span> <span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;group_id&quot;</span><span class="o">)</span>
 <span class="o">}</span>
 </pre>
@@ -192,13 +196,15 @@
 <span class="n">m</span><span class="o">.</span><span class="na">column</span><span class="o">(</span><span class="s">&quot;group_id&quot;</span><span class="o">)</span>
 <span class="n">m</span><span class="o">.</span><span class="na">c</span><span class="o">(</span><span class="s">&quot;group_id&quot;</span><span class="o">)</span>
 </pre>
-<p>In some cases, you might want to avoid expose column names to application layer. If this is the case, override <code>nameConverters</code>. If you want to treat <code>service_cd</code> column as <code>serviceCode</code>, define that as follows. Since the <code>nameConverters</code> works as partial match retrieval, it&rsquo;s also possible to specify just <code>Map(&quot;Code&quot; -> &quot;cd&quot;)</code>.</p>
+<p>In some cases, you might want to avoid expose column names to application layer. If this is the case, override <code>nameConverters</code>. If you want to treat <code>service_cd</code> column as <code>serviceCode</code>, define regular expression and replaced name in columns as follows. Since the <code>nameConverters</code> works as partial match retrieval, it&rsquo;s also possible to specify just <code>Map(&quot;Code&quot; -> &quot;cd&quot;)</code>.</p>
 <pre class="highlight java"><span class="k">case</span> <span class="kd">class</span> <span class="nf">Event</span><span class="p">(</span><span class="nl">id:</span> <span class="n">Long</span><span class="o">,</span> <span class="nl">name:</span> <span class="n">String</span><span class="o">,</span> <span class="nl">serviceCode:</span> <span class="n">Long</span><span class="o">)</span>
 
 <span class="n">object</span> <span class="n">Event</span> <span class="kd">extends</span> <span class="n">SQLSyntaxSupport</span><span class="o">[</span><span class="n">Event</span><span class="o">]</span> <span class="o">{</span>
   <span class="n">override</span> <span class="n">val</span> <span class="n">tableName</span> <span class="o">=</span> <span class="s">&quot;events&quot;</span>
   <span class="n">override</span> <span class="n">val</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">Seq</span><span class="o">(</span><span class="s">&quot;id&quot;</span> <span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;service_cd&quot;</span><span class="o">)</span>
-  <span class="n">override</span> <span class="n">val</span> <span class="n">nameConverters</span> <span class="o">=</span> <span class="n">Map</span><span class="o">(</span><span class="s">&quot;serviceCode&quot;</span> <span class="o">-&gt;</span> <span class="s">&quot;service_cd&quot;</span><span class="o">)</span>
+
+  <span class="c1">// specify regular expression to match</span>
+  <span class="n">override</span> <span class="n">val</span> <span class="n">nameConverters</span> <span class="o">=</span> <span class="n">Map</span><span class="o">(</span><span class="s">&quot;^serviceCode$&quot;</span> <span class="o">-&gt;</span> <span class="s">&quot;service_cd&quot;</span><span class="o">)</span>
 <span class="o">}</span>
 </pre>
 <hr/>
