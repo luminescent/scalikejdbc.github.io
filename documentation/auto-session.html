@@ -36,12 +36,13 @@
                 <li><a href="/documentation/reverse-engineering.html">Reverse Engineering</a></li>
                 <li><a href="/documentation/testing.html">Testing</a></li>
                 <li><a href="/documentation/playframework-support.html">Play2 Support</a></li>
-                <li><a href="/contribution.html">Contribution</a></li>
                 <li><a href="/documentation/dbconsole.html">dbconsole</a></li>
+                <li><a href="/contribution.html">Contribution</a></li>
               </ul>
             </li>
+            <li><a href="https://github.com/scalikejdbc/hello-scalikejdbc">Play2 Sample</a></li>
             <li><a href="https://groups.google.com/group/scalikejdbc-users-group">Users Group</a></li>
-            <li><a href="https://github.com/scalikejdbc/scalikejdbc">Source</a></li>
+            <li><a href="https://github.com/scalikejdbc/scalikejdbc">GitHub</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -63,8 +64,8 @@
             <p><a href="/documentation/reverse-engineering.html">Reverse Engineering</a></p>
             <p><a href="/documentation/testing.html">Testing</a></p>
             <p><a href="/documentation/playframework-support.html">Play2 Support</a></p>
-            <p><a href="/contribution.html">Contribution</a></p>
             <p><a href="/documentation/dbconsole.html">dbconsole</a></p>
+            <p><a href="/contribution.html">Contribution</a></p>
           </div>
         </div>
         <div class="col-xs-10">
@@ -117,7 +118,7 @@ The reason is that since <code>#findById(Long)</code> uses another session(=conn
 <span class="n">DB</span> <span class="n">localTx</span> <span class="o">{</span> <span class="n">implicit</span> <span class="n">session</span> <span class="o">=&gt;</span> <span class="n">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span> <span class="o">}</span> <span class="c1">// using implicit session</span>
 </pre>
 <p>If you do the same with <code>NamedDB</code>, use <code>NamedAutoSession</code> as follows.</p>
-<pre class="highlight java"><span class="n">def</span> <span class="nf">findById</span><span class="p">(</span><span class="nl">id:</span> <span class="n">Long</span><span class="o">)(</span><span class="n">implicit</span> <span class="nl">session:</span> <span class="n">DBSession</span> <span class="o">=</span> <span class="n">NamedAutoSession</span><span class="o">(</span><span class="err">'</span><span class="n">named</span><span class="o">))</span> <span class="o">=</span>
+<pre class="highlight java"><span class="n">def</span> <span class="nf">findById</span><span class="p">(</span><span class="nl">id:</span> <span class="n">Long</span><span class="o">)(</span><span class="n">implicit</span> <span class="nl">session:</span> <span class="n">DBSession</span> <span class="o">=</span> <span class="n">NamedAutoSession</span><span class="o">(</span><span class="err">&#39;</span><span class="n">named</span><span class="o">))</span> <span class="o">=</span>
   <span class="n">sql</span><span class="s">&quot;select id, name from members where id = ${id}&quot;</span>
 </pre>
             <hr/>

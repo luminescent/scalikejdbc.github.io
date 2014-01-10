@@ -36,12 +36,13 @@
                 <li><a href="/documentation/reverse-engineering.html">Reverse Engineering</a></li>
                 <li><a href="/documentation/testing.html">Testing</a></li>
                 <li><a href="/documentation/playframework-support.html">Play2 Support</a></li>
-                <li><a href="/contribution.html">Contribution</a></li>
                 <li><a href="/documentation/dbconsole.html">dbconsole</a></li>
+                <li><a href="/contribution.html">Contribution</a></li>
               </ul>
             </li>
+            <li><a href="https://github.com/scalikejdbc/hello-scalikejdbc">Play2 Sample</a></li>
             <li><a href="https://groups.google.com/group/scalikejdbc-users-group">Users Group</a></li>
-            <li><a href="https://github.com/scalikejdbc/scalikejdbc">Source</a></li>
+            <li><a href="https://github.com/scalikejdbc/scalikejdbc">GitHub</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -63,8 +64,8 @@
             <p><a href="/documentation/reverse-engineering.html">Reverse Engineering</a></p>
             <p><a href="/documentation/testing.html">Testing</a></p>
             <p><a href="/documentation/playframework-support.html">Play2 Support</a></p>
-            <p><a href="/contribution.html">Contribution</a></p>
             <p><a href="/documentation/dbconsole.html">dbconsole</a></p>
+            <p><a href="/contribution.html">Contribution</a></p>
           </div>
         </div>
         <div class="col-xs-10">
@@ -144,11 +145,11 @@ General options:
 <span class="n">scala</span><span class="o">&gt;</span> <span class="s">&quot;select species, count(1) from iris group by species&quot;</span><span class="o">.</span><span class="na">run</span>
 <span class="nl">res5:</span> <span class="n">List</span><span class="o">[</span><span class="n">Map</span><span class="o">[</span><span class="n">String</span><span class="o">,</span><span class="n">Any</span><span class="o">]]</span> <span class="o">=</span> <span class="n">List</span><span class="o">(</span><span class="n">Map</span><span class="o">(</span><span class="n">SPECIES</span> <span class="o">-&gt;</span> <span class="n">versicolor</span><span class="o">,</span> <span class="n">COUNT</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="mi">50</span><span class="o">),</span> <span class="n">Map</span><span class="o">(</span><span class="n">SPECIES</span> <span class="o">-&gt;</span> <span class="n">setosa</span><span class="o">,</span> <span class="n">COUNT</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="mi">50</span><span class="o">),</span> <span class="n">Map</span><span class="o">(</span><span class="n">SPECIES</span> <span class="o">-&gt;</span> <span class="n">virginica</span><span class="o">,</span> <span class="n">COUNT</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="mi">50</span><span class="o">))</span>
 
-<span class="n">scala</span><span class="o">&gt;</span> <span class="s">&quot;insert into iris values (151, 0.1, 0.2, 0.3, 0.4, 'xxx');&quot;</span><span class="o">.</span><span class="na">run</span><span class="o">.</span><span class="na">asOption</span><span class="o">[</span><span class="n">Boolean</span><span class="o">]</span>
+<span class="n">scala</span><span class="o">&gt;</span> <span class="s">&quot;insert into iris values (151, 0.1, 0.2, 0.3, 0.4, &#39;xxx&#39;);&quot;</span><span class="o">.</span><span class="na">run</span><span class="o">.</span><span class="na">asOption</span><span class="o">[</span><span class="n">Boolean</span><span class="o">]</span>
 <span class="nl">res6:</span> <span class="n">Option</span><span class="o">[</span><span class="n">Boolean</span><span class="o">]</span> <span class="o">=</span> <span class="n">Some</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
 
 <span class="n">scala</span><span class="o">&gt;</span> <span class="n">DB</span> <span class="n">localTx</span> <span class="o">{</span> <span class="n">implicit</span> <span class="n">session</span> <span class="o">=&gt;</span>
-     <span class="o">|</span>   <span class="s">&quot;insert into iris values (152, 0.1, 0.2, 0.3, 0.4, 'yyy');&quot;</span><span class="o">.</span><span class="na">run</span>
+     <span class="o">|</span>   <span class="s">&quot;insert into iris values (152, 0.1, 0.2, 0.3, 0.4, &#39;yyy&#39;);&quot;</span><span class="o">.</span><span class="na">run</span>
      <span class="o">|</span>   <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span>
      <span class="o">|</span> <span class="o">}</span>
 <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">RuntimeException</span>

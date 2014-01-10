@@ -36,12 +36,13 @@
                 <li><a href="/documentation/reverse-engineering.html">Reverse Engineering</a></li>
                 <li><a href="/documentation/testing.html">Testing</a></li>
                 <li><a href="/documentation/playframework-support.html">Play2 Support</a></li>
-                <li><a href="/contribution.html">Contribution</a></li>
                 <li><a href="/documentation/dbconsole.html">dbconsole</a></li>
+                <li><a href="/contribution.html">Contribution</a></li>
               </ul>
             </li>
+            <li><a href="https://github.com/scalikejdbc/hello-scalikejdbc">Play2 Sample</a></li>
             <li><a href="https://groups.google.com/group/scalikejdbc-users-group">Users Group</a></li>
-            <li><a href="https://github.com/scalikejdbc/scalikejdbc">Source</a></li>
+            <li><a href="https://github.com/scalikejdbc/scalikejdbc">GitHub</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -63,8 +64,8 @@
             <p><a href="/documentation/reverse-engineering.html">Reverse Engineering</a></p>
             <p><a href="/documentation/testing.html">Testing</a></p>
             <p><a href="/documentation/playframework-support.html">Play2 Support</a></p>
-            <p><a href="/contribution.html">Contribution</a></p>
             <p><a href="/documentation/dbconsole.html">dbconsole</a></p>
+            <p><a href="/contribution.html">Contribution</a></p>
           </div>
         </div>
         <div class="col-xs-10">
@@ -209,7 +210,7 @@ create table members (
 <pre class="highlight java"><span class="n">val</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Alice&quot;</span>
 <span class="c1">// implicit session represents java.sql.Connection</span>
 <span class="n">val</span> <span class="nl">memberId:</span> <span class="n">Option</span><span class="o">[</span><span class="n">Long</span><span class="o">]</span> <span class="o">=</span> <span class="n">DB</span> <span class="n">readOnly</span> <span class="o">{</span> <span class="n">implicit</span> <span class="n">session</span> <span class="o">=&gt;</span>
-  <span class="n">sql</span><span class="s">&quot;select id from members where name = ${name}&quot;</span> <span class="c1">// don't worry, prevents SQL injection</span>
+  <span class="n">sql</span><span class="s">&quot;select id from members where name = ${name}&quot;</span> <span class="c1">// don&#39;t worry, prevents SQL injection</span>
     <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">rs</span> <span class="o">=&gt;</span> <span class="n">rs</span><span class="o">.</span><span class="na">long</span><span class="o">(</span><span class="s">&quot;id&quot;</span><span class="o">))</span> <span class="c1">// extracts values from rich java.sql.ResultSet</span>
     <span class="o">.</span><span class="na">single</span>                   <span class="c1">// single, list, traversable</span>
     <span class="o">.</span><span class="na">apply</span><span class="o">()</span>                  <span class="c1">// Side effect!!! runs the SQL using Connection</span>
@@ -285,7 +286,7 @@ create table members (
 <pre class="highlight text">[debug] s.StatementExecutor$$anon$1 - SQL execution completed
 
   [Executed SQL]
-   select id, name from users where email = 'alice@example.com'; (3 ms)
+   select id, name from users where email = &#39;alice@example.com&#39;; (3 ms)
 
   [Stack Trace]
     ...

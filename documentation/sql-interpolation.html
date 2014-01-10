@@ -36,12 +36,13 @@
                 <li><a href="/documentation/reverse-engineering.html">Reverse Engineering</a></li>
                 <li><a href="/documentation/testing.html">Testing</a></li>
                 <li><a href="/documentation/playframework-support.html">Play2 Support</a></li>
-                <li><a href="/contribution.html">Contribution</a></li>
                 <li><a href="/documentation/dbconsole.html">dbconsole</a></li>
+                <li><a href="/contribution.html">Contribution</a></li>
               </ul>
             </li>
+            <li><a href="https://github.com/scalikejdbc/hello-scalikejdbc">Play2 Sample</a></li>
             <li><a href="https://groups.google.com/group/scalikejdbc-users-group">Users Group</a></li>
-            <li><a href="https://github.com/scalikejdbc/scalikejdbc">Source</a></li>
+            <li><a href="https://github.com/scalikejdbc/scalikejdbc">GitHub</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -63,8 +64,8 @@
             <p><a href="/documentation/reverse-engineering.html">Reverse Engineering</a></p>
             <p><a href="/documentation/testing.html">Testing</a></p>
             <p><a href="/documentation/playframework-support.html">Play2 Support</a></p>
-            <p><a href="/contribution.html">Contribution</a></p>
             <p><a href="/documentation/dbconsole.html">dbconsole</a></p>
+            <p><a href="/contribution.html">Contribution</a></p>
           </div>
         </div>
         <div class="col-xs-10">
@@ -87,7 +88,7 @@
     <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">rs</span> <span class="o">=&gt;</span> <span class="n">Member</span><span class="o">(</span><span class="n">rs</span><span class="o">)).</span><span class="na">single</span><span class="o">.</span><span class="na">apply</span><span class="o">()</span>
 
 <span class="c1">// above code is same as follows:</span>
-<span class="c1">// SQL(&quot;select id, name from members where id = {id}&quot;).bindByName('id -&gt; id)</span>
+<span class="c1">// SQL(&quot;select id, name from members where id = {id}&quot;).bindByName(&#39;id -&gt; id)</span>
 <span class="c1">//   .map(rs =&gt; Member(rs)).single.apply()</span>
 </pre>
 <p>Don&rsquo;t worry, this code is safely protected from SQL injection attacks. <code>${id}</code> will be a place holder.</p>
@@ -114,6 +115,8 @@
 <p>SQLSyntaxSupport is one step short of ORM. In other words, it&rsquo;s a powerful DRY way to write SQL.</p>
 
 <p>First of all, mix the <code>SQLSyntaxSupport[A]</code> trait to <code>A</code> companion object, and define <code>tableName</code> and <code>#apply</code> method to map values from <code>ResultSet</code> object in it. The unfamilier <code>ResultName[A]</code> are described later.</p>
+
+<p>NOTICE: When you use case classes for entities as follows (Group, GroupMember) everything goes fine. But if you use normal classes for entities, be aware of entity equality. See the following page in detail: <a href="/documentation/one-to-x.html">documentation/one-to-x.html</a></p>
 <pre class="highlight java"><span class="kn">import</span> <span class="nn">scalikejdbc._</span><span class="o">,</span> <span class="n">SQLInterpolation</span><span class="o">.</span><span class="na">_</span>
 
 <span class="k">case</span> <span class="kd">class</span> <span class="nf">Group</span><span class="p">(</span><span class="nl">id:</span> <span class="n">Long</span><span class="o">,</span> <span class="nl">name:</span> <span class="n">String</span><span class="o">)</span>
@@ -121,12 +124,18 @@
   <span class="nl">groupId:</span> <span class="n">Option</span><span class="o">[</span><span class="n">Long</span><span class="o">]</span> <span class="o">=</span> <span class="n">None</span><span class="o">,</span> <span class="nl">group:</span> <span class="n">Option</span><span class="o">[</span><span class="n">Group</span><span class="o">]</span> <span class="o">=</span> <span class="n">None</span><span class="o">)</span>
 
 <span class="n">object</span> <span class="n">Group</span> <span class="kd">extends</span> <span class="n">SQLSyntaxSupport</span><span class="o">[</span><span class="n">Group</span><span class="o">]</span> <span class="o">{</span>
-  <span class="c1">// If the table name is same as snake_case'd name of this companion object,</span>
-  <span class="c1">// you don't need to specify tableName explicitly.</span>
+
+  <span class="c1">// If you need to specify schema name, override this</span>
+  <span class="c1">// def table will return sqls&quot;public.groups&quot; in this case</span>
+  <span class="c1">// Of course, schemaName doesn&#39;t work with MySQL</span>
+  <span class="n">override</span> <span class="n">val</span> <span class="n">schemaName</span> <span class="o">=</span> <span class="n">Some</span><span class="o">(</span><span class="s">&quot;public&quot;</span><span class="o">)</span>
+
+  <span class="c1">// If the table name is same as snake_case&#39;d name of this companion object,</span>
+  <span class="c1">// you don&#39;t need to specify tableName explicitly.</span>
   <span class="n">override</span> <span class="n">val</span> <span class="n">tableName</span> <span class="o">=</span> <span class="s">&quot;groups&quot;</span>
 
   <span class="c1">// If you use NamedDB for this entity, override connectionPoolName</span>
-  <span class="c1">//override val connectionPoolName = 'anotherdb</span>
+  <span class="c1">//override val connectionPoolName = &#39;anotherdb</span>
 
   <span class="n">def</span> <span class="n">apply</span><span class="o">(</span><span class="nl">g:</span> <span class="n">ResultName</span><span class="o">[</span><span class="n">Group</span><span class="o">])(</span><span class="nl">rs:</span> <span class="n">WrappedResultSet</span><span class="o">)</span> <span class="o">=</span>
     <span class="k">new</span> <span class="n">Group</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">long</span><span class="o">(</span><span class="n">g</span><span class="o">.</span><span class="na">id</span><span class="o">),</span> <span class="n">rs</span><span class="o">.</span><span class="na">string</span><span class="o">(</span><span class="n">g</span><span class="o">.</span><span class="na">name</span><span class="o">))</span>
@@ -253,6 +262,44 @@
       <span class="o">.</span><span class="na">updateAndReturnGeneratedKey</span><span class="o">.</span><span class="na">apply</span><span class="o">()</span>
     <span class="n">Member</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">birthday</span><span class="o">)</span>
   <span class="o">}</span>
+</pre>
+<hr/>
+
+<h4 id="toc_7">Use Case: SQLSyntaxSupport with table sharding</h4>
+
+<p>If you have multiple tables for same entity. For example, <code>orders_2011</code>, <code>orders_2012</code> and <code>orders_2013</code>.</p>
+<pre class="highlight java"><span class="k">case</span> <span class="kd">class</span> <span class="nf">Order</span><span class="p">(</span><span class="nl">id:</span> <span class="n">Long</span><span class="o">,</span> <span class="nl">productId:</span> <span class="n">Long</span><span class="o">,</span> <span class="nl">customerId:</span> <span class="n">Option</span><span class="o">[</span><span class="n">Long</span><span class="o">],</span> <span class="nl">createdAt:</span> <span class="n">DateTime</span><span class="o">)</span>
+
+<span class="kd">class</span> <span class="nf">OrderTable</span><span class="p">(</span><span class="n">val</span> <span class="nl">year:</span> <span class="n">Int</span><span class="o">)</span> <span class="kd">extends</span> <span class="n">SQLSyntaxSupport</span><span class="o">[</span><span class="n">Order</span><span class="o">]</span> <span class="o">{</span>
+  <span class="c1">// Be careful if you build tableName with input values </span>
+  <span class="c1">// ScalikeJDBC cannot protect your app from SQL injection vulnerability</span>
+  <span class="n">override</span> <span class="n">val</span> <span class="n">tableName</span> <span class="o">=</span> <span class="n">s</span><span class="s">&quot;orders_$year&quot;</span>
+
+  <span class="n">def</span> <span class="n">apply</span><span class="o">(</span><span class="nl">o:</span> <span class="n">ResultName</span><span class="o">[</span><span class="n">Order</span><span class="o">])(</span><span class="nl">rs:</span> <span class="n">WrappedResultSet</span><span class="o">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Order</span><span class="o">(</span>
+    <span class="n">id</span>         <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="na">long</span><span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">id</span><span class="o">),</span> 
+    <span class="n">productId</span>  <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="na">long</span><span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">productId</span><span class="o">),</span> 
+    <span class="n">customerId</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="na">longOpt</span><span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">customerId</span><span class="o">),</span> 
+    <span class="n">createdAt</span>  <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="na">dateTime</span><span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">createdAt</span><span class="o">)</span>
+  <span class="o">)</span>
+<span class="o">}</span>
+<span class="n">val</span> <span class="o">(</span><span class="n">o2011</span><span class="o">,</span> <span class="n">o2012</span><span class="o">,</span> <span class="n">o2013</span><span class="o">)</span> <span class="o">=</span> <span class="o">(</span><span class="k">new</span> <span class="n">OrderTable</span><span class="o">(</span><span class="mi">2011</span><span class="o">),</span> <span class="k">new</span> <span class="n">OrderTable</span><span class="o">(</span><span class="mi">2012</span><span class="o">),</span> <span class="k">new</span> <span class="n">OrderTable</span><span class="o">(</span><span class="mi">2013</span><span class="o">))</span>
+
+<span class="n">val</span> <span class="n">ordersIn2011</span> <span class="o">=</span> <span class="n">DB</span> <span class="n">readOnly</span> <span class="o">{</span> <span class="n">implicit</span> <span class="n">s</span> <span class="o">=&gt;</span>
+  <span class="n">val</span> <span class="n">o</span> <span class="o">=</span> <span class="n">o2011</span><span class="o">.</span><span class="na">syntax</span><span class="o">(</span><span class="s">&quot;o&quot;</span><span class="o">)</span>
+  <span class="n">sql</span><span class="s">&quot;select ${o.result.*} from ${o2011 as o) where ${o.customerId} is not null&quot;</span>
+    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">o2011</span><span class="o">(</span><span class="n">o</span><span class="o">)).</span><span class="na">list</span><span class="o">.</span><span class="na">apply</span><span class="o">()</span>
+<span class="o">}</span>
+<span class="n">DB</span> <span class="n">readOnly</span> <span class="o">{</span> <span class="n">implicit</span> <span class="n">s</span> <span class="o">=&gt;</span>
+  <span class="n">val</span> <span class="n">o2</span> <span class="o">=</span> <span class="n">o2012</span><span class="o">.</span><span class="na">syntax</span><span class="o">(</span><span class="s">&quot;o&quot;</span><span class="o">)</span>
+  <span class="n">val</span> <span class="n">ordersIn2012</span> <span class="o">=</span> 
+    <span class="n">sql</span><span class="s">&quot;select ${o.result.*} from ${o2012 as o2) where ${o.customerId} is not null&quot;</span>
+      <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">o2012</span><span class="o">(</span><span class="n">o2</span><span class="o">)).</span><span class="na">list</span><span class="o">.</span><span class="na">apply</span><span class="o">()</span>
+
+  <span class="n">val</span> <span class="n">o3</span> <span class="o">=</span> <span class="n">o2013</span><span class="o">.</span><span class="na">syntax</span><span class="o">(</span><span class="s">&quot;o&quot;</span><span class="o">)</span>
+  <span class="n">val</span> <span class="n">ordersIn2013</span> <span class="o">=</span> 
+    <span class="n">sql</span><span class="s">&quot;select ${o.result.*} from ${o2013 as o3) where ${o.customerId} is not null&quot;</span>
+      <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">o2013</span><span class="o">(</span><span class="n">o3</span><span class="o">)).</span><span class="na">list</span><span class="o">.</span><span class="na">apply</span><span class="o">()</span>
+<span class="o">}</span>
 </pre>
             <hr/>
             <div class="alert alert-info small"> 

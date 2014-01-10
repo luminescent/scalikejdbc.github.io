@@ -36,12 +36,13 @@
                 <li><a href="/documentation/reverse-engineering.html">Reverse Engineering</a></li>
                 <li><a href="/documentation/testing.html">Testing</a></li>
                 <li><a href="/documentation/playframework-support.html">Play2 Support</a></li>
-                <li><a href="/contribution.html">Contribution</a></li>
                 <li><a href="/documentation/dbconsole.html">dbconsole</a></li>
+                <li><a href="/contribution.html">Contribution</a></li>
               </ul>
             </li>
+            <li><a href="https://github.com/scalikejdbc/hello-scalikejdbc">Play2 Sample</a></li>
             <li><a href="https://groups.google.com/group/scalikejdbc-users-group">Users Group</a></li>
-            <li><a href="https://github.com/scalikejdbc/scalikejdbc">Source</a></li>
+            <li><a href="https://github.com/scalikejdbc/scalikejdbc">GitHub</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -63,8 +64,8 @@
             <p><a href="/documentation/reverse-engineering.html">Reverse Engineering</a></p>
             <p><a href="/documentation/testing.html">Testing</a></p>
             <p><a href="/documentation/playframework-support.html">Play2 Support</a></p>
-            <p><a href="/contribution.html">Contribution</a></p>
             <p><a href="/documentation/dbconsole.html">dbconsole</a></p>
+            <p><a href="/contribution.html">Contribution</a></p>
           </div>
         </div>
         <div class="col-xs-10">
@@ -87,7 +88,7 @@
 <span class="c1">// default</span>
 <span class="n">val</span> <span class="nl">conn:</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">Connection</span> <span class="o">=</span> <span class="n">ConnectionPool</span><span class="o">.</span><span class="na">borrow</span><span class="o">()</span>
 <span class="c1">// named</span>
-<span class="n">val</span> <span class="nl">conn:</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">Connection</span> <span class="o">=</span> <span class="n">ConnectionPool</span><span class="o">(</span><span class="err">'</span><span class="n">named</span><span class="o">).</span><span class="na">borrow</span><span class="o">()</span>
+<span class="n">val</span> <span class="nl">conn:</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">Connection</span> <span class="o">=</span> <span class="n">ConnectionPool</span><span class="o">(</span><span class="err">&#39;</span><span class="n">named</span><span class="o">).</span><span class="na">borrow</span><span class="o">()</span>
 </pre>
 <p>Be careful. The connection object should be released by yourself.</p>
 
@@ -116,7 +117,7 @@
   <span class="c1">// ...</span>
 <span class="o">}</span>
 <span class="c1">// named</span>
-<span class="n">NamedDB</span><span class="o">(</span><span class="err">'</span><span class="n">named</span><span class="o">)</span> <span class="n">readOnly</span> <span class="o">{</span> <span class="n">implicit</span> <span class="n">session</span> <span class="o">=&gt;</span>
+<span class="n">NamedDB</span><span class="o">(</span><span class="err">&#39;</span><span class="n">named</span><span class="o">)</span> <span class="n">readOnly</span> <span class="o">{</span> <span class="n">implicit</span> <span class="n">session</span> <span class="o">=&gt;</span>
   <span class="c1">// ...</span>
 <span class="o">}</span>
 </pre>
@@ -181,7 +182,7 @@
 <span class="o">}</span>
 
 <span class="n">implicit</span> <span class="n">val</span> <span class="n">factory</span> <span class="o">=</span> <span class="n">C3P0ConnectionPoolFactory</span>
-<span class="n">ConnectionPool</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="err">'</span><span class="n">xxxx</span><span class="o">,</span> <span class="n">url</span><span class="o">,</span> <span class="n">user</span><span class="o">,</span> <span class="n">password</span><span class="o">)</span>
+<span class="n">ConnectionPool</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="err">&#39;</span><span class="n">xxxx</span><span class="o">,</span> <span class="n">url</span><span class="o">,</span> <span class="n">user</span><span class="o">,</span> <span class="n">password</span><span class="o">)</span>
 </pre>
             <hr/>
             <div class="alert alert-info small"> 

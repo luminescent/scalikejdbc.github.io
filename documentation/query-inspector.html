@@ -36,12 +36,13 @@
                 <li><a href="/documentation/reverse-engineering.html">Reverse Engineering</a></li>
                 <li><a href="/documentation/testing.html">Testing</a></li>
                 <li><a href="/documentation/playframework-support.html">Play2 Support</a></li>
-                <li><a href="/contribution.html">Contribution</a></li>
                 <li><a href="/documentation/dbconsole.html">dbconsole</a></li>
+                <li><a href="/contribution.html">Contribution</a></li>
               </ul>
             </li>
+            <li><a href="https://github.com/scalikejdbc/hello-scalikejdbc">Play2 Sample</a></li>
             <li><a href="https://groups.google.com/group/scalikejdbc-users-group">Users Group</a></li>
-            <li><a href="https://github.com/scalikejdbc/scalikejdbc">Source</a></li>
+            <li><a href="https://github.com/scalikejdbc/scalikejdbc">GitHub</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -63,8 +64,8 @@
             <p><a href="/documentation/reverse-engineering.html">Reverse Engineering</a></p>
             <p><a href="/documentation/testing.html">Testing</a></p>
             <p><a href="/documentation/playframework-support.html">Play2 Support</a></p>
-            <p><a href="/contribution.html">Contribution</a></p>
             <p><a href="/documentation/dbconsole.html">dbconsole</a></p>
+            <p><a href="/contribution.html">Contribution</a></p>
           </div>
         </div>
         <div class="col-xs-10">
@@ -84,10 +85,10 @@
 <pre class="highlight java"><span class="kn">import</span> <span class="nn">scalikejdbc._</span>
 <span class="n">GlobalSettings</span><span class="o">.</span><span class="na">loggingSQLAndTime</span> <span class="o">=</span> <span class="n">LoggingSQLAndTimeSettings</span><span class="o">(</span>
   <span class="n">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span>
-  <span class="n">logLevel</span> <span class="o">=</span> <span class="err">'</span><span class="n">DEBUG</span><span class="o">,</span>
+  <span class="n">logLevel</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">DEBUG</span><span class="o">,</span>
   <span class="n">warningEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span>
   <span class="n">warningThresholdMillis</span> <span class="o">=</span> <span class="mi">1000L</span><span class="o">,</span>
-  <span class="n">warningLogLevel</span> <span class="o">=</span> <span class="err">'</span><span class="n">WARN</span>
+  <span class="n">warningLogLevel</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">WARN</span>
 <span class="o">)</span>
 </pre>
 <hr/>
@@ -98,7 +99,7 @@
 <pre class="highlight shell"><span class="o">[</span>debug] s.StatementExecutor<span class="nv">$$</span>anon<span class="nv">$1</span> - SQL execution completed
 
   <span class="o">[</span>Executed SQL]
-   <span class="k">select</span> <span class="k">*</span> from user where email <span class="o">=</span> <span class="s1">'guillaume@sample.com'</span>; <span class="o">(</span>0 ms<span class="o">)</span>
+   <span class="k">select</span> <span class="k">*</span> from user where email <span class="o">=</span> <span class="s1">&#39;guillaume@sample.com&#39;</span>; <span class="o">(</span>0 ms<span class="o">)</span>
 
   <span class="o">[</span>Stack Trace]
     ...
@@ -127,11 +128,11 @@
 <pre class="highlight java"><span class="n">GlobalSettings</span><span class="o">.</span><span class="na">loggingSQLAndTime</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoggingSQLAndTimeSettings</span><span class="o">(</span>
   <span class="n">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span>
   <span class="n">singleLineMode</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span>
-  <span class="n">logLevel</span> <span class="o">=</span> <span class="err">'</span><span class="n">DEBUG</span>
+  <span class="n">logLevel</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">DEBUG</span>
 <span class="o">)</span>
 </pre>
 <p>In this case, logging as follows:</p>
-<pre class="highlight shell">2013-05-26 16:23:08,072 DEBUG <span class="o">[</span>pool-4-thread-4] s.StatementExecutor<span class="nv">$$</span>anon<span class="nv">$1</span> <span class="o">[</span>Log.scala:81] <span class="o">[</span>SQL Execution] <span class="k">select</span> <span class="k">*</span> from user where email <span class="o">=</span> <span class="s1">'guillaume@sample.com'</span>; <span class="o">(</span>0 ms<span class="o">)</span>
+<pre class="highlight shell">2013-05-26 16:23:08,072 DEBUG <span class="o">[</span>pool-4-thread-4] s.StatementExecutor<span class="nv">$$</span>anon<span class="nv">$1</span> <span class="o">[</span>Log.scala:81] <span class="o">[</span>SQL Execution] <span class="k">select</span> <span class="k">*</span> from user where email <span class="o">=</span> <span class="s1">&#39;guillaume@sample.com&#39;</span>; <span class="o">(</span>0 ms<span class="o">)</span>
 </pre>
 <hr/>
 
