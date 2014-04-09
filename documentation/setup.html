@@ -12,8 +12,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
-    <div class="navbar navbar-default" role="navigation">
+    <div class="navbar" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="/"><img src="/images/logo_small.png" /></a>
@@ -40,9 +39,10 @@
                 <li><a href="/contribution.html">Contribution</a></li>
               </ul>
             </li>
-            <li><a href="https://github.com/scalikejdbc/hello-scalikejdbc">Play2 Sample</a></li>
+            <li><a href="http://typesafe.com/activator/template/scalikejdbc-activator-template">Typesafe Activator</a></li>
             <li><a href="https://groups.google.com/group/scalikejdbc-users-group">Users Group</a></li>
             <li><a href="https://github.com/scalikejdbc/scalikejdbc">GitHub</a></li>
+            <li><a href="https://travis-ci.org/scalikejdbc/scalikejdbc"><img src="https://travis-ci.org/scalikejdbc/scalikejdbc.png?branch=develop" alt="Travis CI"/></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -77,20 +77,22 @@
 
 <p>ScalikeJDBC libraries are available on the Maven central repository.</p>
 
-<p><a href="http://search.maven.org/#search%7Cga%7C1%7Cscalikejdbc">http://search.maven.org/#search%7Cga%7C1%7Cscalikejdbc</a></p>
+<p><a href="http://search.maven.org/#search%7Cga%7C1%7Corg.scalikejdbc">http://search.maven.org/#search%7Cga%7C1%7Corg.scalikejdbc</a></p>
 
 <hr/>
 
 <h3 id="toc_1">Core Library &amp; Interpolation</h3>
 
+<hr/>
+
 <p>Add latest version into your <code>build.sbt</code> or <code>project/Build.scala</code>. Don&rsquo;t forget JDBC driver and slf4j implementation.</p>
 
 <p>If you&rsquo;re still using Scala 2.9, you can&rsquo;t use <code>scalikejdbc-interpolation</code>.</p>
 <pre class="highlight text">libraryDependencies ++= Seq(
-  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc&quot;               % &quot;[1.7,)&quot;,
-  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;[1.7,)&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc&quot;               % &quot;1.7.5&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;1.7.5&quot;,
   &quot;com.h2database&quot;  %  &quot;h2&quot;                        % &quot;[1.3,)&quot;,
-  &quot;ch.qos.logback&quot;  %  &quot;logback-classic&quot;           % &quot;[1.0,)&quot;
+  &quot;ch.qos.logback&quot;  %  &quot;logback-classic&quot;           % &quot;[1.1,)&quot;
 )
 </pre>
 <p>In your application, just add the following import.</p>
@@ -100,13 +102,15 @@
 
 <h3 id="toc_2">Testing Support</h3>
 
+<hr/>
+
 <p>Using <code>scalikejdbc-test</code> is highly recommended to improve your application.</p>
 <pre class="highlight text">libraryDependencies ++= Seq(
-  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc&quot;               % &quot;[1.7,)&quot;,
-  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;[1.7,)&quot;,
-  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-test&quot;          % &quot;[1.7,)&quot;   % &quot;test&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc&quot;               % &quot;1.7.5&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;1.7.5&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-test&quot;          % &quot;1.7.5&quot;   % &quot;test&quot;,
   &quot;com.h2database&quot;  %  &quot;h2&quot;                        % &quot;[1.3,)&quot;,
-  &quot;ch.qos.logback&quot;  %  &quot;logback-classic&quot;           % &quot;[1.0,)&quot;
+  &quot;ch.qos.logback&quot;  %  &quot;logback-classic&quot;           % &quot;[1.1,)&quot;
 )
 </pre>
 <p>Usage: <a href="/documentation/testing.html">/documentation/testing</a></p>
@@ -115,13 +119,15 @@
 
 <h3 id="toc_3">Typesafe Config Reader</h3>
 
+<hr/>
+
 <p>If you use <code>application.conf</code> as settings file, add <code>scalikejdbc-config</code> too.</p>
 <pre class="highlight text">libraryDependencies ++= Seq(
-  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc&quot;               % &quot;[1.7,)&quot;,
-  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;[1.7,)&quot;,
-  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-config&quot;        % &quot;[1.7,)&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc&quot;               % &quot;1.7.5&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-interpolation&quot; % &quot;1.7.5&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-config&quot;        % &quot;1.7.5&quot;,
   &quot;com.h2database&quot;  %  &quot;h2&quot;                        % &quot;[1.3,)&quot;,
-  &quot;ch.qos.logback&quot;  %  &quot;logback-classic&quot;           % &quot;[1.0,)&quot;
+  &quot;ch.qos.logback&quot;  %  &quot;logback-classic&quot;           % &quot;[1.1,)&quot;
 )
 </pre>
 <p>Usage: <a href="/documentation/configuration.html">/documentation/configuration</a></p>
@@ -129,6 +135,8 @@
 <hr/>
 
 <h3 id="toc_4">Reverse Engineering</h3>
+
+<hr/>
 
 <p>ScalikeJDBC support reverse engineering Scala code from existing database.
 You need to setup an sbt plugin named <code>scalikejdbc-mapper-generator</code>.</p>
@@ -163,13 +171,15 @@ generator.encoding=UTF-8
 
 <h3 id="toc_8">Play Framework Integration</h3>
 
+<hr/>
+
 <p>Add <code>scalikejdbc-play-plugin</code> and <code>scalikejdbc-play-fixture-plugin</code> (optional) as Play plugins.</p>
 
 <h5 id="toc_9">project/Build.scala</h5>
 <pre class="highlight text">val appDependencies = Seq(
-  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc&quot;                     % &quot;[1.7,)&quot;,
-  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-play-plugin&quot;         % &quot;[1.7,)&quot;,
-  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-play-fixture-plugin&quot; % &quot;[1.7,)&quot;, // optional
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc&quot;                     % &quot;1.7.5&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-play-plugin&quot;         % &quot;1.7.5&quot;,
+  &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-play-fixture-plugin&quot; % &quot;1.7.5&quot;, // optional
   // substitute this for whatever DB driver you&#39;re using:
   &quot;com.h2database&quot;  %  &quot;h2&quot;                      % &quot;1.3,)&quot;
 )
@@ -186,6 +196,8 @@ generator.encoding=UTF-8
 <hr/>
 
 <h3 id="toc_11">dbconsole</h3>
+
+<hr/>
 
 <p>A simple console to connect database via JDBC.</p>
 

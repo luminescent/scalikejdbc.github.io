@@ -12,8 +12,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
-    <div class="navbar navbar-default" role="navigation">
+    <div class="navbar" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="/"><img src="/images/logo_small.png" /></a>
@@ -40,9 +39,10 @@
                 <li><a href="/contribution.html">Contribution</a></li>
               </ul>
             </li>
-            <li><a href="https://github.com/scalikejdbc/hello-scalikejdbc">Play2 Sample</a></li>
+            <li><a href="http://typesafe.com/activator/template/scalikejdbc-activator-template">Typesafe Activator</a></li>
             <li><a href="https://groups.google.com/group/scalikejdbc-users-group">Users Group</a></li>
             <li><a href="https://github.com/scalikejdbc/scalikejdbc">GitHub</a></li>
+            <li><a href="https://travis-ci.org/scalikejdbc/scalikejdbc"><img src="https://travis-ci.org/scalikejdbc/scalikejdbc.png?branch=develop" alt="Travis CI"/></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -77,11 +77,15 @@
 
 <h3 id="toc_1">Checking the actual SQL and timing</h3>
 
+<hr/>
+
 <p>Using LogginSQLAndTime feature, you can check the actual SQL(not exactly) and time.</p>
 
 <hr/>
 
 <h3 id="toc_2">Settings</h3>
+
+<hr/>
 <pre class="highlight java"><span class="kn">import</span> <span class="nn">scalikejdbc._</span>
 <span class="n">GlobalSettings</span><span class="o">.</span><span class="na">loggingSQLAndTime</span> <span class="o">=</span> <span class="n">LoggingSQLAndTimeSettings</span><span class="o">(</span>
   <span class="n">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span>
@@ -93,7 +97,9 @@
 </pre>
 <hr/>
 
-<h3 id="toc_3">Output</h3>
+<h3 id="toc_3">Output Example</h3>
+
+<hr/>
 
 <p>For example, logging as follows:</p>
 <pre class="highlight shell"><span class="o">[</span>debug] s.StatementExecutor<span class="nv">$$</span>anon<span class="nv">$1</span> - SQL execution completed
@@ -124,6 +130,8 @@
 
 <h3 id="toc_4">Single Line Mode</h3>
 
+<hr/>
+
 <p>If you don&rsquo;t need stack trace logging and just print SQL in single line, use <code>singleLineMode = true</code>.</p>
 <pre class="highlight java"><span class="n">GlobalSettings</span><span class="o">.</span><span class="na">loggingSQLAndTime</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoggingSQLAndTimeSettings</span><span class="o">(</span>
   <span class="n">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span>
@@ -136,9 +144,13 @@
 </pre>
 <hr/>
 
-<h3 id="toc_5">Sending data to external services</h3>
+<h3 id="toc_5">Not Only Logging</h3>
+
+<hr/>
 
 <p>You can use hooks such as <code>GlobalSettings.queryCompletionListener</code> and <code>GlobalSettings.queryFailureListener</code>.</p>
+
+<p>For instance, the following example will send information about slow queries to Fluentd.</p>
 <pre class="highlight java"><span class="kn">import</span> <span class="nn">org.fluentd.logger.scala._</span>
 <span class="n">val</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">FluentLoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="s">&quot;scalikejdbc&quot;</span><span class="o">)</span>
 

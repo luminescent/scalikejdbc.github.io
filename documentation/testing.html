@@ -12,8 +12,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
-    <div class="navbar navbar-default" role="navigation">
+    <div class="navbar" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="/"><img src="/images/logo_small.png" /></a>
@@ -40,9 +39,10 @@
                 <li><a href="/contribution.html">Contribution</a></li>
               </ul>
             </li>
-            <li><a href="https://github.com/scalikejdbc/hello-scalikejdbc">Play2 Sample</a></li>
+            <li><a href="http://typesafe.com/activator/template/scalikejdbc-activator-template">Typesafe Activator</a></li>
             <li><a href="https://groups.google.com/group/scalikejdbc-users-group">Users Group</a></li>
             <li><a href="https://github.com/scalikejdbc/scalikejdbc">GitHub</a></li>
+            <li><a href="https://travis-ci.org/scalikejdbc/scalikejdbc"><img src="https://travis-ci.org/scalikejdbc/scalikejdbc.png?branch=develop" alt="Travis CI"/></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -77,11 +77,15 @@
 
 <h3 id="toc_1">Setup</h3>
 
+<hr/>
+
 <p>See <a href="/documentation/setup.html">/documentation/setup</a>.</p>
 
 <hr/>
 
-<h3 id="toc_2">ScalaTest</h3>
+<h3 id="toc_2">For ScalaTest Users</h3>
+
+<hr/>
 
 <p><code>AutoRollback</code> trait provides automatic rollback after each test and data fixture.</p>
 <pre class="highlight java"><span class="kn">import</span> <span class="nn">scalikejdbc._</span>
@@ -110,13 +114,17 @@
 </pre>
 <hr/>
 
-<h3 id="toc_3">specs2</h3>
+<h3 id="toc_3">For specs2 Users</h3>
+
+<hr/>
 
 <p><code>AutoRollback</code> trait provides automatic rollback after each test and data fixture.</p>
 
 <hr/>
 
-<h4 id="toc_4">unit</h4>
+<h4 id="toc_4">unit style</h4>
+
+<hr/>
 <pre class="highlight java"><span class="kn">import</span> <span class="nn">scalikejdbc._</span>
 <span class="kn">import</span> <span class="nn">scalikejdbc.specs2.mutable.AutoRollback</span>
 <span class="kn">import</span> <span class="nn">org.joda.time.DateTime</span>
@@ -149,7 +157,9 @@
 </pre>
 <hr/>
 
-<h4 id="toc_5">acceptance</h4>
+<h4 id="toc_5">acceptance style</h4>
+
+<hr/>
 <pre class="highlight java"><span class="kn">import</span> <span class="nn">scalikejdbc._</span>
 <span class="kn">import</span> <span class="nn">scalikejdbc.specs2.AutoRollback</span>
 <span class="kn">import</span> <span class="nn">org.joda.time.DateTime</span>

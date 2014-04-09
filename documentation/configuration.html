@@ -12,8 +12,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
-    <div class="navbar navbar-default" role="navigation">
+    <div class="navbar" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="/"><img src="/images/logo_small.png" /></a>
@@ -40,9 +39,10 @@
                 <li><a href="/contribution.html">Contribution</a></li>
               </ul>
             </li>
-            <li><a href="https://github.com/scalikejdbc/hello-scalikejdbc">Play2 Sample</a></li>
+            <li><a href="http://typesafe.com/activator/template/scalikejdbc-activator-template">Typesafe Activator</a></li>
             <li><a href="https://groups.google.com/group/scalikejdbc-users-group">Users Group</a></li>
             <li><a href="https://github.com/scalikejdbc/scalikejdbc">GitHub</a></li>
+            <li><a href="https://travis-ci.org/scalikejdbc/scalikejdbc"><img src="https://travis-ci.org/scalikejdbc/scalikejdbc.png?branch=develop" alt="Travis CI"/></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -79,7 +79,9 @@
 
 <hr/>
 
-<h3 id="toc_1">JDBC Driver</h3>
+<h3 id="toc_1">Loading JDBC Drivers</h3>
+
+<hr/>
 
 <p>In advance, JDBC drivers must be loaded by using</p>
 <pre class="highlight text">Class.forName(String)
@@ -93,7 +95,9 @@
 
 <h3 id="toc_2">Connection Pool Settings</h3>
 
-<p>ConnectionPool should be initialized on startu.</p>
+<hr/>
+
+<p>ConnectionPool should be initialized when starting your applications.</p>
 <pre class="highlight java"><span class="kn">import</span> <span class="nn">scalikejdbc._</span>
 
 <span class="c1">// after loading JDBC drivers</span>
@@ -138,6 +142,8 @@
 
 <h3 id="toc_3">Global Settings</h3>
 
+<hr/>
+
 <p>Global settings for logging for query inspection and so on.</p>
 <pre class="highlight java"><span class="n">object</span> <span class="n">GlobalSettings</span> <span class="o">{</span>
   <span class="n">var</span> <span class="nl">loggingSQLErrors:</span> <span class="n">Boolean</span>
@@ -152,7 +158,9 @@
 
 <hr/>
 
-<h3 id="toc_4">Using scalikejdbc-config</h3>
+<h3 id="toc_4">scalikejdbc-config</h3>
+
+<hr/>
 
 <p>If you use <code>scalikejdbc-config</code> which is an easy-to-use configuration loader for ScalikeJDBC which reads typesafe config, configuration is much simple.</p>
 
@@ -200,7 +208,9 @@ db.legacy.password=&quot;bar&quot;
 </pre>
 <hr/>
 
-<h3 id="toc_5">Using scalikejdbc-config with environment</h3>
+<h3 id="toc_5">scalikejdbc-config with Environment</h3>
+
+<hr/>
 
 <p>It&rsquo;s also possible to add prefix(e.g. environment).</p>
 <pre class="highlight text">development.db.default.driver=&quot;org.h2.Driver&quot;
@@ -225,7 +235,9 @@ prod {
 </pre>
 <hr/>
 
-<h3 id="toc_6">Using scalikejdbc-config for Global Settings</h3>
+<h3 id="toc_6">scalikejdbc-config for Global Settings</h3>
+
+<hr/>
 
 <p>The following settings are available.</p>
 <pre class="highlight text"># Global settings
