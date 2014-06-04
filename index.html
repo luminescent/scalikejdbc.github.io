@@ -116,9 +116,20 @@ Be aware that this page is compatible with ScalikeJDBC 2.0. If you're a 1.x user
 
 <p>All you need to do is just adding ScalikeJDBC, JDBC driver &amp; slf4j implementation. </p>
 
-<h3 id="scalikejdbc-1.7">ScalikeJDBC 1.7</h3>
+<h3 id="scalikejdbc-2.0">ScalikeJDBC 2.0</h3>
 
-<p>See <a href="/documentation/1.x/">ScalikeJDBC 1.7 Documentation</a> in detail.</p>
+<p>See <a href="/">ScalikeJDBC 2.0 Documentation</a> in detail.</p>
+<pre class="highlight scala"><span class="c1">// Scala 2.10, 2.11
+</span><span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>       <span class="o">%</span> <span class="s">"2.0.1"</span><span class="o">,</span>
+  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                <span class="o">%</span> <span class="s">"1.4.178"</span><span class="o">,</span>
+  <span class="s">"ch.qos.logback"</span>  <span class="o">%</span>  <span class="s">"logback-classic"</span>   <span class="o">%</span> <span class="s">"1.1.2"</span>
+<span class="o">)</span>
+</pre>
+
+<h3 id="scalikejdbc-1.7,-1.8">ScalikeJDBC 1.7, 1.8</h3>
+
+<p>See <a href="/documentation/1.x/">ScalikeJDBC 1.x Documentation</a> in detail.</p>
 <pre class="highlight scala"><span class="c1">// Scala 2.9, 2.10
 </span><span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
   <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>               <span class="o">%</span> <span class="s">"1.7.7"</span><span class="o">,</span>
@@ -128,14 +139,13 @@ Be aware that this page is compatible with ScalikeJDBC 2.0. If you're a 1.x user
 <span class="o">)</span>
 </pre>
 
-<h3 id="scalikejdbc-2.0">ScalikeJDBC 2.0</h3>
-
-<p>See <a href="/">ScalikeJDBC 2.0 Documentation</a> in detail.</p>
-<pre class="highlight scala"><span class="c1">// Scala 2.10, 2.11
+<p>Scala 2.9 incompatible changes will be backported only to ScalikeJDBC 1.8.x. Don&rsquo;t worry. We&rsquo;ll keep maintaining ScalikeJDBC 1.7.x for Scala 2.9 users.</p>
+<pre class="highlight scala"><span class="c1">// Scala 2.10
 </span><span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
-  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>       <span class="o">%</span> <span class="s">"2.0.0"</span><span class="o">,</span>
-  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                <span class="o">%</span> <span class="s">"1.4.178"</span><span class="o">,</span>
-  <span class="s">"ch.qos.logback"</span>  <span class="o">%</span>  <span class="s">"logback-classic"</span>   <span class="o">%</span> <span class="s">"1.1.2"</span>
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>               <span class="o">%</span> <span class="s">"1.8.0"</span><span class="o">,</span>
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-interpolation"</span> <span class="o">%</span> <span class="s">"1.8.0"</span><span class="o">,</span>
+  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                        <span class="o">%</span> <span class="s">"1.4.178"</span><span class="o">,</span>
+  <span class="s">"ch.qos.logback"</span>  <span class="o">%</span>  <span class="s">"logback-classic"</span>           <span class="o">%</span> <span class="s">"1.1.2"</span>
 <span class="o">)</span>
 </pre>
 
@@ -201,6 +211,13 @@ create table members (
 
 <span class="c1">// find all members
 </span><span class="k">val</span> <span class="n">members</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Member</span><span class="o">]</span> <span class="k">=</span> <span class="n">sql</span><span class="s">"select * from members"</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">rs</span> <span class="k">=&gt;</span> <span class="nc">Member</span><span class="o">(</span><span class="n">rs</span><span class="o">)).</span><span class="n">list</span><span class="o">.</span><span class="n">apply</span><span class="o">()</span>
+
+<span class="c1">// use paste mode (:paste) on the Scala REPL
+</span><span class="k">val</span> <span class="n">m</span> <span class="k">=</span> <span class="nc">Member</span><span class="o">.</span><span class="n">syntax</span><span class="o">(</span><span class="s">"m"</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="s">"Alice"</span>
+<span class="k">val</span> <span class="n">alice</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Member</span><span class="o">]</span> <span class="k">=</span> <span class="n">withSQL</span> <span class="o">{</span> 
+  <span class="n">select</span><span class="o">.</span><span class="n">from</span><span class="o">(</span><span class="nc">Member</span> <span class="n">as</span> <span class="n">m</span><span class="o">).</span><span class="n">where</span><span class="o">.</span><span class="n">eq</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="n">name</span><span class="o">,</span> <span class="n">name</span><span class="o">)</span> 
+<span class="o">}.</span><span class="n">map</span><span class="o">(</span><span class="n">rs</span> <span class="k">=&gt;</span> <span class="nc">Member</span><span class="o">(</span><span class="n">rs</span><span class="o">)).</span><span class="n">single</span><span class="o">.</span><span class="n">apply</span><span class="o">()</span>
 </pre>
 
 <p>How did it go? If you&rsquo;d like to know more details or practical examples, see documentation.</p>
@@ -363,7 +380,7 @@ sbt "scalikejdbc-gen companies Company"
 <h2 id="license">License</h2>
 
 <p>Published binary files have the following copyright:</p>
-<pre class="highlight plaintext">Copyright 2013 ScalikeJDBC committers
+<pre class="highlight plaintext">Copyright 2011 - 2014 scalikejdbc.org
 Apache License, Version 2.0
 http://www.apache.org/licenses/LICENSE-2.0.html
 </pre>
@@ -406,11 +423,11 @@ http://www.apache.org/licenses/LICENSE-2.0.html
 
 <p><img alt="Skinny framework" src="/images/skinny.png" /></p>
 
-<p>Skinny ORM is the default DB access library of <a href="https://github.com/skinny-framework/skinny-framework">Skinny Framework</a>. Skinny ORM is built upon ScalikeJDBC. </p>
+<p>Skinny ORM is the default DB access library of <a href="http://skinny-framework.org/">Skinny Framework</a>. Skinny ORM is built upon ScalikeJDBC. </p>
 
 <p>In most cases, ORM makes things easier.</p>
 
-<p><a href="https://github.com/skinny-framework/skinny-framework#orm">https://github.com/skinny-framework/skinny-framework#orm</a></p>
+<p><a href="http://skinny-framework.org/documentation/orm.html">http://skinny-framework.org/documentation/orm.html</a></p>
 
             <hr/>
             <div class="alert alert-info small"> 
