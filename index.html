@@ -43,6 +43,7 @@
             <p><a href="/documentation/testing.html">Testing</a></p>
             <p><a href="/documentation/playframework-support.html">Play2 Support</a></p>
             <p><a href="/documentation/dbconsole.html">dbconsole</a></p>
+            <p><a href="/documentation/faq.html">FAQ</a></p>
             <p><a href="/contribution.html">Contribution</a></p>
           </div>
         </div>
@@ -108,6 +109,10 @@ Be aware that this page is compatible with ScalikeJDBC 2.0. If you're a 1.x user
 
 <p>ScalikeJDBC-Async is still in the alpha stage. If you don&rsquo;t have motivation to investigate or fix issues by yourself, we recommend you waiting until stable version release someday.</p>
 
+<h3 id="faq">FAQ</h3>
+
+<p>See also FAQs here: <a href="/documentation/faq.html">/documentation/faq.html</a></p>
+
 <hr/>
 
 <h2 id="getting-started">Getting Started</h2>
@@ -121,8 +126,8 @@ Be aware that this page is compatible with ScalikeJDBC 2.0. If you're a 1.x user
 <p>See <a href="/">ScalikeJDBC 2.0 Documentation</a> in detail.</p>
 <pre class="highlight scala"><span class="c1">// Scala 2.10, 2.11
 </span><span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
-  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>       <span class="o">%</span> <span class="s">"2.0.2"</span><span class="o">,</span>
-  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                <span class="o">%</span> <span class="s">"1.4.178"</span><span class="o">,</span>
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>       <span class="o">%</span> <span class="s">"2.0.3"</span><span class="o">,</span>
+  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                <span class="o">%</span> <span class="s">"1.4.179"</span><span class="o">,</span>
   <span class="s">"ch.qos.logback"</span>  <span class="o">%</span>  <span class="s">"logback-classic"</span>   <span class="o">%</span> <span class="s">"1.1.2"</span>
 <span class="o">)</span>
 </pre>
@@ -134,7 +139,7 @@ Be aware that this page is compatible with ScalikeJDBC 2.0. If you're a 1.x user
 </span><span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
   <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>               <span class="o">%</span> <span class="s">"1.7.7"</span><span class="o">,</span>
   <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-interpolation"</span> <span class="o">%</span> <span class="s">"1.7.7"</span><span class="o">,</span>
-  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                        <span class="o">%</span> <span class="s">"1.4.178"</span><span class="o">,</span>
+  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                        <span class="o">%</span> <span class="s">"1.4.179"</span><span class="o">,</span>
   <span class="s">"ch.qos.logback"</span>  <span class="o">%</span>  <span class="s">"logback-classic"</span>           <span class="o">%</span> <span class="s">"1.1.2"</span>
 <span class="o">)</span>
 </pre>
@@ -142,9 +147,9 @@ Be aware that this page is compatible with ScalikeJDBC 2.0. If you're a 1.x user
 <p>Scala 2.9 incompatible changes will be backported only to ScalikeJDBC 1.8.x. Don&rsquo;t worry. We&rsquo;ll keep maintaining ScalikeJDBC 1.7.x for Scala 2.9 users.</p>
 <pre class="highlight scala"><span class="c1">// Scala 2.10
 </span><span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
-  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>               <span class="o">%</span> <span class="s">"1.8.1"</span><span class="o">,</span>
-  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-interpolation"</span> <span class="o">%</span> <span class="s">"1.8.1"</span><span class="o">,</span>
-  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                        <span class="o">%</span> <span class="s">"1.4.178"</span><span class="o">,</span>
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>               <span class="o">%</span> <span class="s">"1.8.2"</span><span class="o">,</span>
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-interpolation"</span> <span class="o">%</span> <span class="s">"1.8.2"</span><span class="o">,</span>
+  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                        <span class="o">%</span> <span class="s">"1.4.179"</span><span class="o">,</span>
   <span class="s">"ch.qos.logback"</span>  <span class="o">%</span>  <span class="s">"logback-classic"</span>           <span class="o">%</span> <span class="s">"1.1.2"</span>
 <span class="o">)</span>
 </pre>
