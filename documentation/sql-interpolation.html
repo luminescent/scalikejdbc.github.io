@@ -207,6 +207,13 @@ Be aware that this page is compatible with ScalikeJDBC 2.x. If you're a 1.x user
 <span class="n">m</span><span class="o">.</span><span class="n">c</span><span class="o">(</span><span class="s">"group_id"</span><span class="o">)</span>
 </code></pre>
 
+<p>If you don&rsquo;t need to convert field names to snake cased column names, set <code>useSnakeCaseColumnName</code> as false like this:</p>
+<pre><code class="highlight scala"><span class="k">object</span> <span class="nc">UserType</span> <span class="k">extends</span> <span class="nc">SQLSyntaxSupport</span><span class="o">[</span><span class="kt">UserType</span><span class="o">]</span> <span class="o">{</span>
+  <span class="k">override</span> <span class="k">val</span> <span class="n">useSnakeCaseColumnName</span> <span class="k">=</span> <span class="kc">false</span>
+  <span class="o">...</span>
+<span class="o">}</span>
+</code></pre>
+
 <p>In some cases, you might want to avoid expose column names to application layer. If this is the case, override <code>nameConverters</code>. If you want to treat <code>service_cd</code> column as <code>serviceCode</code>, define regular expression and replaced name in columns as follows. Since the <code>nameConverters</code> works as partial match retrieval, it&rsquo;s also possible to specify just <code>Map(&quot;Code&quot; -&gt; &quot;cd&quot;)</code>.</p>
 <pre><code class="highlight scala"><span class="k">case</span> <span class="k">class</span> <span class="nc">Event</span><span class="o">(</span><span class="n">id</span><span class="k">:</span> <span class="kt">Long</span><span class="o">,</span> <span class="n">name</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">serviceCode</span><span class="k">:</span> <span class="kt">Long</span><span class="o">)</span>
 
