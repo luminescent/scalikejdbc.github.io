@@ -21,6 +21,7 @@
             <li><a href="http://typesafe.com/activator/template/scalikejdbc-activator-template">Typesafe Activator</a></li>
             <li><a href="https://groups.google.com/group/scalikejdbc-users-group">Users Group</a></li>
             <li><a href="https://github.com/scalikejdbc/scalikejdbc">GitHub</a></li>
+            <li><a href="http://skinny-framework.org/documentation/orm.html">Skinny ORM</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -44,6 +45,7 @@
             <p><a href="/documentation/testing.html">Testing</a></p>
             <p><a href="/documentation/playframework-support.html">Play Support</a></p>
             <p><a href="/documentation/dbconsole.html">dbconsole</a></p>
+            <p><a href="http://www.javadoc.io/doc/org.scalikejdbc/scalikejdbc-core_2.11/2.2.3">Core API Doc</a></p>
             <p><a href="/documentation/faq.html">FAQ</a></p>
             <p><a href="/contribution.html">Contribution</a></p>
           </div>
@@ -51,9 +53,6 @@
         <div class="col-xs-10">
           <div class="content">
 <a href="https://github.com/scalikejdbc/scalikejdbc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-<div class="alert alert-info">
-Be aware that this page is compatible with ScalikeJDBC 2.x. If you're a 1.x user, visit <a href="/documentation/1.x/">here</a>.
-</div>
             <h2 id="configuration">Configuration</h2>
 
 <hr/>
@@ -67,11 +66,11 @@ Be aware that this page is compatible with ScalikeJDBC 2.x. If you're a 1.x user
 <hr/>
 
 <p>In advance, JDBC drivers must be loaded by using</p>
-<pre><code class="highlight plaintext">Class.forName(String)
+<pre class="highlight plaintext"><code>Class.forName(String)
 </code></pre>
 
 <p>or</p>
-<pre><code class="highlight plaintext">scala.sql.DriverManager.registerDriver(scala.sql.Driver)
+<pre class="highlight plaintext"><code>scala.sql.DriverManager.registerDriver(scala.sql.Driver)
 </code></pre>
 
 <p>If you use <code>scalikejdbc-config</code> or <code>scalikejdbc-play-plugin</code>, they do the legacy work for you.</p>
@@ -83,7 +82,7 @@ Be aware that this page is compatible with ScalikeJDBC 2.x. If you're a 1.x user
 <hr/>
 
 <p>ConnectionPool should be initialized when starting your applications.</p>
-<pre><code class="highlight scala"><span class="k">import</span> <span class="nn">scalikejdbc._</span>
+<pre class="highlight scala"><code><span class="k">import</span> <span class="nn">scalikejdbc._</span>
 
 <span class="c1">// after loading JDBC drivers
 </span><span class="nc">ConnectionPool</span><span class="o">.</span><span class="n">singleton</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="n">user</span><span class="o">,</span> <span class="n">password</span><span class="o">)</span>
@@ -100,7 +99,7 @@ Be aware that this page is compatible with ScalikeJDBC 2.x. If you're a 1.x user
 </code></pre>
 
 <p>When you use external DataSource (e.g. application server&rsquo;s connection pool), use javax.sql.DataSource via JNDI:</p>
-<pre><code class="highlight scala"><span class="k">import</span> <span class="nn">javax.naming._</span>
+<pre class="highlight scala"><code><span class="k">import</span> <span class="nn">javax.naming._</span>
 <span class="k">import</span> <span class="nn">javax.sql._</span>
 <span class="k">val</span> <span class="n">ds</span> <span class="k">=</span> <span class="o">(</span><span class="k">new</span> <span class="nc">InitialContext</span><span class="o">)</span>
   <span class="o">.</span><span class="n">lookup</span><span class="o">(</span><span class="s">"java:/comp/env"</span><span class="o">).</span><span class="n">asInstanceOf</span><span class="o">[</span><span class="kt">Context</span><span class="o">]</span>
@@ -112,13 +111,13 @@ Be aware that this page is compatible with ScalikeJDBC 2.x. If you're a 1.x user
 </code></pre>
 
 <p><code>ConnectionPool</code> and <code>ConnectionPoolSettings</code>&rsquo;s parameters are like this:</p>
-<pre><code class="highlight scala"><span class="k">abstract</span> <span class="k">class</span> <span class="nc">ConnectionPool</span><span class="o">(</span>
+<pre class="highlight scala"><code><span class="k">abstract</span> <span class="k">class</span> <span class="nc">ConnectionPool</span><span class="o">(</span>
   <span class="k">val</span> <span class="n">url</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span>
   <span class="k">val</span> <span class="n">user</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span>
   <span class="n">password</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span>
   <span class="k">val</span> <span class="n">settings</span><span class="k">:</span> <span class="kt">ConnectionPoolSettings</span><span class="o">)</span>
 </code></pre>
-<pre><code class="highlight scala"><span class="k">case</span> <span class="k">class</span> <span class="nc">ConnectionPoolSettings</span><span class="o">(</span>
+<pre class="highlight scala"><code><span class="k">case</span> <span class="k">class</span> <span class="nc">ConnectionPoolSettings</span><span class="o">(</span>
   <span class="n">initialSize</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span>
   <span class="n">maxSize</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span>
   <span class="n">connectionTimeoutMillis</span><span class="k">:</span> <span class="kt">Long</span><span class="o">,</span>
@@ -134,7 +133,7 @@ Be aware that this page is compatible with ScalikeJDBC 2.x. If you're a 1.x user
 <hr/>
 
 <p>Global settings for logging for query inspection and so on.</p>
-<pre><code class="highlight scala"><span class="k">object</span> <span class="nc">GlobalSettings</span> <span class="o">{</span>
+<pre class="highlight scala"><code><span class="k">object</span> <span class="nc">GlobalSettings</span> <span class="o">{</span>
   <span class="k">var</span> <span class="n">loggingSQLErrors</span><span class="k">:</span> <span class="kt">Boolean</span>
   <span class="k">var</span> <span class="n">loggingSQLAndTime</span><span class="k">:</span> <span class="kt">LoggingSQLAndTimeSettings</span>
   <span class="k">var</span> <span class="n">sqlFormatter</span><span class="k">:</span> <span class="kt">SQLFormatterSettings</span>
@@ -161,9 +160,9 @@ Be aware that this page is compatible with ScalikeJDBC 2.x. If you're a 1.x user
 <p><a href="/documentation/setup.html">/documentation/setup</a></p>
 
 <p>Configuration file should be like <code>src/main/resources/application.conf</code>. See Typesafe Config documentation in detail.</p>
-<pre><code class="highlight plaintext"># JDBC settings
+<pre class="highlight plaintext"><code># JDBC settings
 db.default.driver="org.h2.Driver"
-db.default.url="jdbc:h2:file:db/default"
+db.default.url="jdbc:h2:file:./db/default"
 db.default.user="sa"
 db.default.password=""
 # Connection Pool settings
@@ -179,7 +178,7 @@ db.default.poolValidationQuery="select 1 as one"
 db.default.poolFactoryName="commons-dbcp"
 
 db.legacy.driver="org.h2.Driver"
-db.legacy.url="jdbc:h2:file:db/db2"
+db.legacy.url="jdbc:h2:file:./db/db2"
 db.legacy.user="foo"
 db.legacy.password="bar"
 
@@ -193,7 +192,7 @@ db.default.url="jdbc:postgresql://localhost:5432/scalikejdbc"
 </code></pre>
 
 <p>After just calling <code>scalikejdbc.config.DBs.setupAll()</code>, Connection pools are prepared.</p>
-<pre><code class="highlight scala"><span class="k">import</span> <span class="nn">scalikejdbc._</span>
+<pre class="highlight scala"><code><span class="k">import</span> <span class="nn">scalikejdbc._</span>
 <span class="k">import</span> <span class="nn">scalikejdbc.config._</span>
 
 <span class="nc">DBs</span><span class="o">.</span><span class="n">setupAll</span><span class="o">()</span>
@@ -220,8 +219,8 @@ db.default.url="jdbc:postgresql://localhost:5432/scalikejdbc"
 <hr/>
 
 <p>It&rsquo;s also possible to add prefix(e.g. environment).</p>
-<pre><code class="highlight plaintext">development.db.default.driver="org.h2.Driver"
-development.db.default.url="jdbc:h2:file:db/default"
+<pre class="highlight plaintext"><code>development.db.default.driver="org.h2.Driver"
+development.db.default.url="jdbc:h2:file:./db/default"
 development.db.default.user="sa"
 development.db.default.password=""
 
@@ -229,7 +228,7 @@ prod {
   db {
     sandbox {
       driver="org.h2.Driver"
-      url="jdbc:h2:file:are-you-sure-in-production"
+      url="jdbc:h2:file:./are-you-sure-in-production"
       user="user"
       password="pass"
     }
@@ -238,7 +237,7 @@ prod {
 </code></pre>
 
 <p>Use <code>DBsWithEnv</code> instead of <code>DBs</code>.</p>
-<pre><code class="highlight scala"><span class="nc">DBsWithEnv</span><span class="o">(</span><span class="s">"development"</span><span class="o">).</span><span class="n">setupAll</span><span class="o">()</span>
+<pre class="highlight scala"><code><span class="nc">DBsWithEnv</span><span class="o">(</span><span class="s">"development"</span><span class="o">).</span><span class="n">setupAll</span><span class="o">()</span>
 <span class="nc">DBsWithEnv</span><span class="o">(</span><span class="s">"prod"</span><span class="o">).</span><span class="n">setup</span><span class="o">(</span><span class="ss">'sandbox)</span>
 </code></pre>
 
@@ -249,7 +248,7 @@ prod {
 <hr/>
 
 <p>The following settings are available.</p>
-<pre><code class="highlight plaintext"># Global settings
+<pre class="highlight plaintext"><code># Global settings
 scalikejdbc.global.loggingSQLAndTime.enabled=true
 scalikejdbc.global.loggingSQLAndTime.logLevel=info
 scalikejdbc.global.loggingSQLAndTime.warningEnabled=true
