@@ -72,9 +72,9 @@
 <p>Simply just call <code>#borrow</code> method.</p>
 <pre class="highlight scala"><code><span class="k">import</span> <span class="nn">scalikejdbc._</span>
 <span class="c1">// default
-</span><span class="k">val</span> <span class="n">conn</span><span class="k">:</span> <span class="kt">scala.sql.Connection</span> <span class="o">=</span> <span class="nc">ConnectionPool</span><span class="o">.</span><span class="n">borrow</span><span class="o">()</span>
+</span><span class="k">val</span> <span class="n">conn</span><span class="k">:</span> <span class="kt">java.sql.Connection</span> <span class="o">=</span> <span class="nc">ConnectionPool</span><span class="o">.</span><span class="n">borrow</span><span class="o">()</span>
 <span class="c1">// named
-</span><span class="k">val</span> <span class="n">conn</span><span class="k">:</span> <span class="kt">scala.sql.Connection</span> <span class="o">=</span> <span class="nc">ConnectionPool</span><span class="o">(</span><span class="ss">'named)</span><span class="o">.</span><span class="n">borrow</span><span class="o">()</span>
+</span><span class="k">val</span> <span class="n">conn</span><span class="k">:</span> <span class="kt">java.sql.Connection</span> <span class="o">=</span> <span class="nc">ConnectionPool</span><span class="o">(</span><span class="ss">'named)</span><span class="o">.</span><span class="n">borrow</span><span class="o">()</span>
 </code></pre>
 
 <p>Be careful. The connection object should be released by yourself.</p>
@@ -85,7 +85,7 @@
 </span><span class="o">}</span>
 </code></pre>
 
-<p>ScalikeJDBC wraps a <code>scala.sql.Connection</code> object as a <code>scalikejdbc.DB</code> object.</p>
+<p>ScalikeJDBC wraps a <code>java.sql.Connection</code> object as a <code>scalikejdbc.DB</code> object.</p>
 <pre class="highlight scala"><code><span class="n">using</span><span class="o">(</span><span class="nc">DB</span><span class="o">(</span><span class="nc">ConnectionPool</span><span class="o">.</span><span class="n">borrow</span><span class="o">()))</span> <span class="o">{</span> <span class="n">db</span> <span class="k">=&gt;</span>
   <span class="c1">// ...
 </span><span class="o">}</span>

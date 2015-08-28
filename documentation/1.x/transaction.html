@@ -71,10 +71,10 @@
 <span class="o">}</span>
 </code></pre>
 
-<p>Of course, <code>update</code> operations in read-only mode will cause <code>scala.sql.SQLException</code>.</p>
+<p>Of course, <code>update</code> operations in read-only mode will cause <code>java.sql.SQLException</code>.</p>
 <pre class="highlight scala"><code><span class="nc">DB</span> <span class="n">readOnly</span> <span class="o">{</span> <span class="k">implicit</span> <span class="n">session</span> <span class="k">=&gt;</span>
   <span class="n">sql</span><span class="s">"update emp set name = ${name} where id = ${id}"</span><span class="o">.</span><span class="n">update</span><span class="o">.</span><span class="n">apply</span><span class="o">()</span>
-<span class="o">}</span> <span class="c1">// will throw scala.sql.SQLException
+<span class="o">}</span> <span class="c1">// will throw java.sql.SQLException
 </span></code></pre>
 
 <hr/>
