@@ -45,7 +45,7 @@
             <p><a href="/documentation/testing.html">Testing</a></p>
             <p><a href="/documentation/playframework-support.html">Play Support</a></p>
             <p><a href="/documentation/dbconsole.html">dbconsole</a></p>
-            <p><a href="http://www.javadoc.io/doc/org.scalikejdbc/scalikejdbc-core_2.11/2.2.7">Core API Doc</a></p>
+            <p><a href="http://www.javadoc.io/doc/org.scalikejdbc/scalikejdbc-core_2.11/2.2.8">Core API Doc</a></p>
             <p><a href="/documentation/faq.html">FAQ</a></p>
             <p><a href="/contribution.html">Contribution</a></p>
           </div>
@@ -93,10 +93,10 @@
 
 <h4 id="build.sbt">build.sbt</h4>
 <pre class="highlight scala"><code><span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
-  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                           <span class="o">%</span> <span class="s">"1.4.187"</span><span class="o">,</span> <span class="c1">// your jdbc driver here
-</span>  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>                  <span class="o">%</span> <span class="s">"2.2.7"</span><span class="o">,</span>
-  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-config"</span>           <span class="o">%</span> <span class="s">"2.2.7"</span><span class="o">,</span>
-  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-play-initializer"</span> <span class="o">%</span> <span class="s">"2.4.0"</span>
+  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                           <span class="o">%</span> <span class="s">"1.4.189"</span><span class="o">,</span> <span class="c1">// your jdbc driver here
+</span>  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>                  <span class="o">%</span> <span class="s">"2.2.8"</span><span class="o">,</span>
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-config"</span>           <span class="o">%</span> <span class="s">"2.2.8"</span><span class="o">,</span>
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-play-initializer"</span> <span class="o">%</span> <span class="s">"2.4.1"</span>
 <span class="o">)</span>
 </code></pre>
 
@@ -215,12 +215,12 @@ play.modules.enabled +<span class="o">=</span> <span class="s2">"scalikejdbc.Pla
 
 <h4 id="project/build.scala">project/Build.scala</h4>
 <pre class="highlight scala"><code><span class="n">libraryDependencies</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span>
-  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>                       <span class="o">%</span> <span class="s">"2.2.7"</span><span class="o">,</span>
-  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-config"</span>                <span class="o">%</span> <span class="s">"2.2.7"</span><span class="o">,</span>
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>                       <span class="o">%</span> <span class="s">"2.2.8"</span><span class="o">,</span>
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-config"</span>                <span class="o">%</span> <span class="s">"2.2.8"</span><span class="o">,</span>
   <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-play-plugin"</span>           <span class="o">%</span> <span class="s">"2.3.6"</span><span class="o">,</span>
   <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-play-fixture-plugin"</span>   <span class="o">%</span> <span class="s">"2.3.6"</span><span class="o">,</span> <span class="c1">// optional
 </span>  <span class="c1">// substitute this for whatever DB driver you're using:
-</span>  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                                <span class="o">%</span> <span class="s">"1.4.187"</span>
+</span>  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                                <span class="o">%</span> <span class="s">"1.4.189"</span>
 <span class="o">)</span>
 </code></pre>
 
@@ -281,12 +281,12 @@ logger.scalikejdbc<span class="o">=</span>DEBUG
 
 <h4 id="project/build.scala">project/Build.scala</h4>
 <pre class="highlight scala"><code><span class="n">libraryDependencies</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span>
-  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>                       <span class="o">%</span> <span class="s">"2.2.7"</span><span class="o">,</span>
-  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-config"</span>                <span class="o">%</span> <span class="s">"2.2.7"</span><span class="o">,</span>
-  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-play-dbplugin-adapter"</span> <span class="o">%</span> <span class="s">"2.4.0"</span><span class="o">,</span>
-  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-play-fixture-plugin"</span>   <span class="o">%</span> <span class="s">"2.4.0"</span><span class="o">,</span> <span class="c1">// optional
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc"</span>                       <span class="o">%</span> <span class="s">"2.2.8"</span><span class="o">,</span>
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-config"</span>                <span class="o">%</span> <span class="s">"2.2.8"</span><span class="o">,</span>
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-play-dbplugin-adapter"</span> <span class="o">%</span> <span class="s">"2.4.1"</span><span class="o">,</span>
+  <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-play-fixture-plugin"</span>   <span class="o">%</span> <span class="s">"2.4.1"</span><span class="o">,</span> <span class="c1">// optional
 </span>  <span class="c1">// substitute this for whatever DB driver you're using:
-</span>  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                                <span class="o">%</span> <span class="s">"1.4.187"</span>
+</span>  <span class="s">"com.h2database"</span>  <span class="o">%</span>  <span class="s">"h2"</span>                                <span class="o">%</span> <span class="s">"1.4.189"</span>
 <span class="o">)</span>
 </code></pre>
 

@@ -45,7 +45,7 @@
             <p><a href="/documentation/testing.html">Testing</a></p>
             <p><a href="/documentation/playframework-support.html">Play Support</a></p>
             <p><a href="/documentation/dbconsole.html">dbconsole</a></p>
-            <p><a href="http://www.javadoc.io/doc/org.scalikejdbc/scalikejdbc-core_2.11/2.2.7">Core API Doc</a></p>
+            <p><a href="http://www.javadoc.io/doc/org.scalikejdbc/scalikejdbc-core_2.11/2.2.8">Core API Doc</a></p>
             <p><a href="/documentation/faq.html">FAQ</a></p>
             <p><a href="/contribution.html">Contribution</a></p>
           </div>
@@ -70,7 +70,7 @@
 <hr/>
 
 <p>Add the following aditional dependency to your sbt project.</p>
-<pre class="highlight scala"><code><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-syntax-support-macro"</span> <span class="o">%</span> <span class="s">"2.2.7"</span>
+<pre class="highlight scala"><code><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"org.scalikejdbc"</span> <span class="o">%%</span> <span class="s">"scalikejdbc-syntax-support-macro"</span> <span class="o">%</span> <span class="s">"2.2.8"</span>
 </code></pre>
 
 <hr/>
@@ -78,6 +78,8 @@
 <h3 id="usage">Usage</h3>
 
 <hr/>
+
+<h4 id="autoconstruct-for-extracting-entities-from-resultset">autoConstruct for extracting entities from ResultSet</h4>
 
 <p>Usually, we should write ResultSet extractor method as follows.</p>
 <pre class="highlight scala"><code><span class="k">case</span> <span class="k">class</span> <span class="nc">Company</span><span class="o">(</span><span class="n">id</span><span class="k">:</span> <span class="kt">Long</span><span class="o">,</span> <span class="n">name</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">countryId</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Long</span><span class="o">],</span> <span class="n">country</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Country</span><span class="o">]</span> <span class="k">=</span> <span class="nc">None</span><span class="o">)</span>
@@ -106,6 +108,23 @@
 
 <p>The <code>country</code> field in the above example class should be ignored. In such cases, you should specify additional String parameter such as <code>&quot;country&quot;</code>.
 Of course, the <code>&quot;country&quot;</code> will be verified at Scala compilation time. We believe that&rsquo;s pretty cool and useful.</p>
+
+<hr/>
+
+<h4 id="autocolumns-to-avoid-accessing-jdbc-metadata">autoColumns to avoid accessing JDBC metadata</h4>
+
+<p>When your code load ScalikeJDBC DAO objects, ScalikeJDBC automatically fetches all the column names for the table specified by SQLSyntaxSupport&rsquo;s <code>tableName</code> (via JDBC metadata API).</p>
+
+<p>If you don&rsquo;t prefer the behavior, you can choose loading column names from the entity class&rsquo;s field names instead.
+The following code won&rsquo;t access JDBC metadata and will resolve column names from Company class&rsquo;s fields, primary constructor&rsquo;s parameters, by simply converting them to snake-cased ones or applying nameConverters to them.</p>
+<pre class="highlight scala"><code><span class="k">case</span> <span class="k">class</span> <span class="nc">Company</span><span class="o">(</span><span class="n">id</span><span class="k">:</span> <span class="kt">Long</span><span class="o">,</span> <span class="n">name</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">countryId</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Long</span><span class="o">],</span> <span class="n">country</span><span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">Country</span><span class="o">]</span> <span class="k">=</span> <span class="nc">None</span><span class="o">)</span>
+
+<span class="k">object</span> <span class="nc">Company</span> <span class="k">extends</span> <span class="nc">SQLSyntaxSupport</span><span class="o">[</span><span class="kt">Company</span><span class="o">]</span> <span class="o">{</span>
+
+  <span class="k">override</span> <span class="k">lazy</span> <span class="k">val</span> <span class="n">columns</span> <span class="k">=</span> <span class="n">autoColumns</span><span class="o">[</span><span class="kt">Company</span><span class="o">](</span><span class="s">"country"</span><span class="o">)</span> 
+  <span class="c1">// this will be Seq("id", "name", "country_id")
+</span><span class="o">}</span>
+</code></pre>
 
             <hr/>
             <div class="alert alert-info small"> 
