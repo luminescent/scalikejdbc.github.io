@@ -7,8 +7,8 @@
     <title>Setup - ScalikeJDBC</title>
     <script type="text/javascript" src="//codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
-    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" />
-    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href="/stylesheets/all.css" rel="stylesheet" />
+    <script src="/javascripts/all.js"></script>
   </head>
   <body>
     <div class="container">
@@ -59,7 +59,7 @@
 
 <hr/>
 
-<h3 id="core-library-&amp;-interpolation">Core Library &amp; Interpolation</h3>
+<h3 id="core-library-amp-interpolation">Core Library &amp; Interpolation</h3>
 
 <hr/>
 
@@ -123,18 +123,18 @@
 <p>ScalikeJDBC support reverse engineering Scala code from existing database.
 You need to setup an sbt plugin named <code>scalikejdbc-mapper-generator</code>.</p>
 
-<h5 id="project/plugins.sbt">project/plugins.sbt</h5>
+<h5 id="project-plugins-sbt">project/plugins.sbt</h5>
 <pre class="highlight plaintext"><code>// Don't forget adding your JDBC driver
 libraryDependencies += "org.hsqldb" % "hsqldb" % "2.3.2"
 
 addSbtPlugin("org.scalikejdbc" %% "scalikejdbc-mapper-generator" % "1.7.7")
 </code></pre>
 
-<h5 id="build.sbt">build.sbt</h5>
+<h5 id="build-sbt">build.sbt</h5>
 <pre class="highlight plaintext"><code>scalikejdbcSettings
 </code></pre>
 
-<h5 id="project/scalikejdbc.properties">project/scalikejdbc.properties</h5>
+<h5 id="project-scalikejdbc-properties">project/scalikejdbc.properties</h5>
 <pre class="highlight plaintext"><code>jdbc.driver=org.h2.Driver
 jdbc.url=jdbc:h2:file:./db/hello
 jdbc.username=sa
@@ -160,7 +160,7 @@ generator.encoding=UTF-8
 
 <p>Add <code>scalikejdbc-play-plugin</code> and <code>scalikejdbc-play-fixture-plugin</code> (optional) as Play plugins.</p>
 
-<h5 id="project/build.scala">project/Build.scala</h5>
+<h5 id="project-build-scala">project/Build.scala</h5>
 <pre class="highlight plaintext"><code>val appDependencies = Seq(
   "org.scalikejdbc" %% "scalikejdbc"                     % "1.7.7",
   "org.scalikejdbc" %% "scalikejdbc-play-plugin"         % "1.7.7",
@@ -170,7 +170,7 @@ generator.encoding=UTF-8
 )
 </code></pre>
 
-<h5 id="conf/play.plugins">conf/play.plugins</h5>
+<h5 id="conf-play-plugins">conf/play.plugins</h5>
 <pre class="highlight plaintext"><code>10000:scalikejdbc.PlayPlugin
 </code></pre>
 
@@ -189,7 +189,7 @@ generator.encoding=UTF-8
 
 <p>A simple console to connect database via JDBC.</p>
 
-<h5 id="mac-os-x,-linux">Mac OS X, Linux</h5>
+<h5 id="mac-os-x-linux">Mac OS X, Linux</h5>
 <pre class="highlight plaintext"><code>curl -L http://git.io/dbconsole | sh
 </code></pre>
 
